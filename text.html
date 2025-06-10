@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App - Call Affiliate Click API</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div id="root" className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg"></div>
+
+    <!-- React and ReactDOM CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <!-- Babel CDN for JSX -->
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const App = () => {
+            const [affiliateLink, setAffiliateLink] = useState("https://example.com/affiliate");
+            const [affiliateId, setAffiliateId] = useState("AFF0002");
+            const [response, setResponse] = useState(null);
+            const [error, setError] = useState(null);
+            const [loading, setLoading] = useState(false);
+
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+                setLoading(true);
+                setResponse(null);
+                setError(null);
+
+                try {
+                    const res = await fetch("http://localhost:3056/api/v1/aff/click", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json",
+                            "User-Agent": navigator.userAgent, // Sử dụng User-Agent thực tế của thiết bị
+                        },
+                        body: JSON.stringify({
+                            affiliateLink,
+                            affiliateId,
+                        }),
+                    });
+
+                    const data = await res.json();
+                    if (!res.ok) {
+                        throw new Error(data.message || "Có lỗi xảy ra");
+                    }
+                    setResponse(data);
+                } catch (err) {
+                    setError(err.message);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            return (
+                <div className="space-y-6">
+                    <h1 className="text-2xl font-bold text-center text-gray-800">
+                        Gọi API Affiliate Click
+                    </h1>
+                    <div className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">
+                                Affiliate Link
+                            </label>
+                            <input
+                                type="text"
+                                value={affiliateLink}
+                                onChange={(e) => setAffiliateLink(e.target.value)}
+                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Nhập affiliate link"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">
+                                Affiliate ID
+                            </label>
+                            <input
+                                type="text"
+                                value={affiliateId}
+                                onChange={(e) => setAffiliateId(e.target.value)}
+                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Nhập affiliate ID"
+                            />
+                        </div>
+                        <button
+                            onClick={handleSubmit}
+                            disabled={loading}
+                            className={`w-full py-2 px-4 rounded-md text-white font-medium ${loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+                        >
+                            {loading ? "Đang gửi..." : "Gửi yêu cầu"}
+                        </button>
+                    </div>
+
+                    {response && (
+                        <div className="p-4 bg-green-100 text-green-800 rounded-md">
+                            <h3 className="font-semibold">Thành công!</h3>
+                            <p>Message: {response.message}</p>
+                            <p>Redirect: <a href={response.redirect} className="underline">{response.redirect}</a></p>
+                        </div>
+                    )}
+
+                    {error && (
+                        <div className="p-4 bg-red-100 text-red-800 rounded-md">
+                            <h3 className="font-semibold">Lỗi!</h3>
+                            <p>{error}</p>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+</body>
+</html>

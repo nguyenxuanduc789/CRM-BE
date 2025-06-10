@@ -1,0 +1,30 @@
+<mxfile host="app.diagrams.net" modified="2025-03-09T12:00:00Z" agent="Grok" version="1.0" type="diagram">
+  <diagram id="diagram_1" name="Page-1">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Frontend Block -->
+        <mxCell id="2" value="Frontend&#xa;(React.js)&#xa;- /users&#xa;- /teams&#xa;- /contacts&#xa;- /pipelines&#xa;- /products" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="200" width="150" height="150" as="geometry" />
+        </mxCell>
+        <!-- Backend Block -->
+        <mxCell id="3" value="Backend&#xa;(Node.js)&#xa;- API Server&#xa;  + /users&#xa;  + /teams&#xa;  + /contacts&#xa;  + /pipelines&#xa;  + /products" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="200" width="150" height="150" as="geometry" />
+        </mxCell>
+        <!-- MongoDB Block -->
+        <mxCell id="4" value="MongoDB&#xa;- [Users]&#xa;  + _id&#xa;  + email&#xa;  + role (FK)&#xa;- [Roles]&#xa;  + _id&#xa;  + name&#xa;- [Teams]&#xa;  + leadId (FK)&#xa;- [Contacts]&#xa;  + assignedTo (FK)&#xa;- [Pipelines]&#xa;  + contact (FK)&#xa;- [Products]&#xa;  + productCode" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="200" width="200" height="200" as="geometry" />
+        </mxCell>
+        <!-- HTTP Arrow -->
+        <mxCell id="5" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Query Arrow -->
+        <mxCell id="6" value="Query" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="3" target="4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -21,13 +21,13 @@ const permissions = {
   },
 };
 
+// Tạo token không có thời gian hết hạn
 const createTokenPair = async (payload, publicKey, privateKey) => {
   try {
-    const accessToken = await JWT.sign(payload, publicKey, {
-      expiresIn: "2 days",
-    });
-    const refreshToken = await JWT.sign(payload, privateKey, {
-      expiresIn: "7 days",
+    // Tạo accessToken không có thời gian hết hạn (không có expiresIn)
+    const accessToken = JWT.sign(payload, privateKey); // Không có expiresIn
+    const refreshToken = JWT.sign(payload, privateKey, {
+      expiresIn: "7 days", // Refresh token có thể có thời gian hết hạn
     });
 
     // Optional: Verify access token
@@ -35,6 +35,7 @@ const createTokenPair = async (payload, publicKey, privateKey) => {
       if (err) {
         console.error(`Error verifying access token:`, err);
       } else {
+        // Vẫn ghi log khi xác minh token
         console.log(`Decoded access token:`, decode);
       }
     });
@@ -50,6 +51,7 @@ const createTokenPair = async (payload, publicKey, privateKey) => {
   }
 };
 
+// Kiểm tra quyền truy cập
 const permissionAccess = (role, resource, action) => {
   return (
     permissions[role] &&
@@ -58,6 +60,7 @@ const permissionAccess = (role, resource, action) => {
   );
 };
 
+// Middleware xác thực token
 const authenticationV2 = asyncHandler(async (req, res, next) => {
   const accessToken = req.headers[HEADERS.AUTHORIZATION];
   if (!accessToken) {
@@ -71,7 +74,11 @@ const authenticationV2 = asyncHandler(async (req, res, next) => {
     }
 
     const token = tokenParts[1];
-    const decodedToken = JWT.verify(token, process.env.PUBLIC_KEY);
+
+    // Xác thực token mà không kiểm tra hết hạn (Token không hết hạn)
+    const decodedToken = JWT.verify(token, process.env.PUBLIC_KEY, {
+      ignoreExpiration: true, // Không kiểm tra thời gian hết hạn
+    });
 
     // Kiểm tra và ghi nhật ký vai trò người dùng
     console.log(`Vai trò người dùng: ${decodedToken.role}`);
@@ -92,8 +99,7 @@ const authenticationV2 = asyncHandler(async (req, res, next) => {
         .status(401)
         .json({ status: "error", code: 401, message: error.message });
     } else {
-      // Xử lý các loại lỗi khác
-      next(error);
+      next(error); // Xử lý các lỗi khác
     }
   }
 });

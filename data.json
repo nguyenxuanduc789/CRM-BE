@@ -1,0 +1,14 @@
+[
+  {
+    "voucher_code": "GIAM10",
+    "discount_percent": 10
+  },
+  {
+    "voucher_code": "GIAM20",
+    "discount_percent": 20
+  },
+  {
+    "voucher_code": "GIAM30",
+    "discount_percent": 30
+  }
+]

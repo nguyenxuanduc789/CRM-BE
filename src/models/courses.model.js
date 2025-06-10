@@ -14,6 +14,7 @@ const courseSchema = new Schema(
     videos: [{ type: Types.ObjectId, ref: "Video" }], // Tham chiếu đến các video trong khóa học
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
+    
   },
   {
     timestamps: true,

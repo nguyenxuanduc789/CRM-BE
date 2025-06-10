@@ -23,26 +23,35 @@ class AuthService {
   };
   static login = async ({ email, password }) => {
     const foundUser = await findByEmail({ email, password });
-
     const match = await bcrypt.compare(password, foundUser.password);
     const tokens = await createTokenPair(
       foundUser,
       process.env.PUBLIC_KEY,
       process.env.PRIVATE_KEY
     );
+    const employeeCodes = foundUser.employeeCode;
+    const lastnames = foundUser.lastname;
+    const firstnames = foundUser.firstname;
+    const userId = foundUser._id;
+    //console.log("User role:", foundUser.role ? foundUser.role.name : "No role");
     if (!match) throw new AuthFailureError("Authentication error");
     if (!foundUser) {
       throw new BadRequestError("Tài khoản hoặc mật khẩu không đúng");
     }
 
     return {
+      employeeCodes,
+      firstnames,
+      lastnames,
+      userId,
+      role: foundUser.role ? foundUser.role.name : "No role",
       access_token: tokens,
       token_type: "bearer",
     };
   };
 
   static signUp = async (body) => {
-    const { email, password, lastname, firstname } = body;
+    const { email, password, lastname, firstname, role } = body;
     if (!email || !password || !lastname || !firstname) {
       throw new BadRequestError("Vui lòng cung cấp đủ thông tin bắt buộc");
     }
@@ -56,7 +65,7 @@ class AuthService {
       firstname,
       email,
       password: passwordHash,
-      role: "admin",
+      role,
     });
 
     // Trả về kết quả thành công nếu tạo người dùng thành công

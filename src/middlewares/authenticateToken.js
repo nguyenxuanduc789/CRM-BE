@@ -1,14 +1,41 @@
-const jwt = require("jsonwebtoken");
+// Middleware xác thực token JWT
+const JWT = require("jsonwebtoken");
+const { AuthFailureError } = require("../core/error.response");
 
-function authenticateToken(req, res, next) {
-  const token = req.header("Authorization")?.split(" ")[1];
-  if (!token) return res.sendStatus(401);
+const authenticateToken = (req, res, next) => {
+  const token = req.headers.authorization;
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
+  if (!token) {
+    return res.status(401).json({
+      status: "error",
+      code: 401,
+      message: "Vui lòng cung cấp token",
+    });
+  }
+
+  const tokenParts = token.split(" ");
+  if (tokenParts.length !== 2 || tokenParts[0] !== "Bearer") {
+    return res.status(401).json({
+      status: "error",
+      code: 401,
+      message: "Token không hợp lệ",
+    });
+  }
+
+  const accessToken = tokenParts[1];
+
+  try {
+    const decodedToken = JWT.verify(accessToken, process.env.PRIVATE_KEY);
+
+    req.user = decodedToken;
     next();
-  });
-}
+  } catch (error) {
+    return res.status(401).json({
+      status: "error",
+      code: 401,
+      message: "Token không hợp lệ hoặc hết hạn",
+    });
+  }
+};
 
-module.exports = authenticateToken;
+module.exports = authenticateToken; // Xuất middleware như là một hàm
