@@ -3,7 +3,15 @@ const PORT = process.env.PORT || 3056;
 const { Server, Socket } = require("socket.io");
 const SocketService = require("./src/services/socket.service");
 // const cron = require('./src/cron/cron_find_person')
-//const SocketService = require('./src/services/socket.service')
+
+// Khởi động cron nhắc học phí Chiến Binh K
+require('./src/cron/cron_remind_tuition');
+
+// Khởi động cron nhắc thanh toán trả góp
+require('./src/cron/cron_remind_installment');
+
+// Khởi động cron nhắc hết hạn MB4200/MBVIP
+require('./src/cron/cron_remind_expiry');
 
 // app.use((req,res,next)=>{
 //     res.io=io;

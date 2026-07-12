@@ -12,10 +12,11 @@ const installmentPlanSchema = new Schema(
     RemainAmount: { type: Number, required: true },
     NoOfPayment: { type: Number, required: true },
     installmentNumber: {
-      // Trường mới thêm vào
       type: String,
       required: true,
     },
+    dueDate: { type: Date }, // Ngày dự kiến trả
+    paidAt: { type: Date }, // Ngày đã thanh toán thực tế
     Status: {
       type: String,
       enum: ["pending", "Completed", "failed"],

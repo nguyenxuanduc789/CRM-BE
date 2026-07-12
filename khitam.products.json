@@ -1,0 +1,2255 @@
+[{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39446"
+  },
+  "name": "Yoga for face 3hrs (E-learning)",
+  "category": "Academy",
+  "price": "500000",
+  "status": "available",
+  "productCode": "Aca_KT3",
+  "__v": 2,
+  "vouchers": [],
+  "TaxCode": "KH16"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39451"
+  },
+  "name": "Thực hành Khí Tâm Yoga Trị Liệu 75H",
+  "category": "Academy",
+  "price": "11000000",
+  "status": "available",
+  "productCode": "Aca_KT14"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39454"
+  },
+  "name": "Thiền Khí Tâm 100H",
+  "category": "Academy",
+  "price": "18000000",
+  "status": "available",
+  "productCode": "HUB_DVTV40",
+  "TaxCode": "KH06",
+  "image": "https://khitamtherapy.com/wp-content/uploads/2025/05/20241108-121750.jpg"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39458"
+  },
+  "name": "Master năng lượng 50H",
+  "category": "Academy",
+  "price": "18000000",
+  "status": "available",
+  "productCode": "Aca_KT21",
+  "TaxCode": "KH10",
+  "image": "https://academy.khitamtherapy.com/wp-content/uploads/2025/02/3.png"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3945d"
+  },
+  "name": "Khí Tâm Yoga Trị Liệu Vào Nghiên Cứu Bệnh Học Trên Các Hệ Cơ Quan 28h",
+  "category": "Academy",
+  "price": "6000000",
+  "status": "available",
+  "productCode": "Aca_KT26"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3945e"
+  },
+  "name": "ỨNG DỤNG Phân Tích Giải Phẫu Học Trên Thế Tập Yoga Dành Cho Cân Bằng & Phục Hồi 16H",
+  "category": "Academy",
+  "price": "3500000",
+  "status": "available",
+  "productCode": "Aca_KT27",
+  "TaxCode": "KH18"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3945f"
+  },
+  "name": "Phân Tích Bệnh Lý Thường Gặp Trên 7 Hệ Cơ Quan 14H",
+  "category": "Academy",
+  "price": "2000000",
+  "status": "available",
+  "productCode": "Aca_KT28",
+  "TaxCode": "KH20"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39460"
+  },
+  "name": "HLV Yoga Trị Liệu 200h HyBRID (Hà Nội)",
+  "category": "Academy",
+  "price": "39000000",
+  "status": "available",
+  "productCode": "Aca_KT29"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39462"
+  },
+  "name": "HLV Yoga Trị Liệu 200h HyBRID (TPHCM)",
+  "category": "Academy",
+  "price": "39000000",
+  "status": "available",
+  "productCode": "Aca_KT31"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39468"
+  },
+  "name": "Workshop Trị Liệu cho Gương Mặt",
+  "category": "Academy",
+  "price": "100000",
+  "status": "available",
+  "productCode": "Aca_KT37"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3946a"
+  },
+  "name": "Workshop Xem Lưng + Xem mặt ",
+  "category": "Academy",
+  "price": "200000",
+  "status": "available",
+  "productCode": "Aca_KT39"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3946b"
+  },
+  "name": "Vai cổ gáy 12H",
+  "category": "Academy",
+  "price": "1300000",
+  "status": "available",
+  "productCode": "Aca_KT40"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39470"
+  },
+  "name": "Da sáng mặt xinh 12H",
+  "category": "Academy",
+  "price": "1300000",
+  "status": "available",
+  "productCode": "Aca_KT45"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39471"
+  },
+  "name": "Dáng xin - Eo tho - Hông nở 12H",
+  "category": "Academy",
+  "price": "1300000",
+  "status": "available",
+  "productCode": "Aca_KT46"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39481"
+  },
+  "name": "Khí Tâm yoga cân bằng vận động (online) - Cô Tố Hải",
+  "category": "Health Hub",
+  "price": "4400000",
+  "status": "available",
+  "productCode": "HUB_DVTV12",
+  "TaxCode": "DV09CG"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39486"
+  },
+  "name": "Khí Tâm huấn luyện chữa lành tâm trí - Cô Tố Hải",
+  "category": "Health Hub",
+  "price": "5500000",
+  "status": "available",
+  "productCode": "HUB_DVTV17",
+  "TaxCode": "DV06CG",
+  "image": "https://academy.khitamtherapy.com/wp-content/uploads/2025/02/cat-10.png"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39487"
+  },
+  "name": "Khóa học Bo Dáng Trị Đau Lưng",
+  "category": "Academy",
+  "price": "1000000",
+  "status": "available",
+  "productCode": "Aca_KT51",
+  "TaxCode": "KH22",
+  "image": "https://khitamtherapy.com/wp-content/uploads/elementor/thumbs/cat-7-1-r52cvh03x4nvsc84i2jxe222f8dbcbkb0owcqxrog8.png"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef3948b"
+  },
+  "name": "Khí Tâm giải mỏi khớp",
+  "category": "Health Hub",
+  "price": "880000",
+  "status": "available",
+  "productCode": "HUB_DVTV20"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef3948e"
+  },
+  "name": "Combo đau vai gáy",
+  "category": "Health Hub",
+  "price": "4620000",
+  "status": "available",
+  "productCode": "HUB_DVTV23"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef39490"
+  },
+  "name": "Combo điều chỉnh dáng",
+  "category": "Health Hub",
+  "price": "4400000",
+  "status": "available",
+  "productCode": "HUB_DVTV25"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef39493"
+  },
+  "name": "Khí Tâm tham vấn cân bằng cơ thể Basic (posture) (Cô Hải)",
+  "category": "Health Hub",
+  "price": "2200000",
+  "status": "available",
+  "productCode": "HUB_DVTV28"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef39494"
+  },
+  "name": "Khí Tâm tư vấn đo khám  online + kèm đo freemed onsite (Chuyên gia Khác)",
+  "category": "Health Hub",
+  "price": "1600000",
+  "status": "available",
+  "productCode": "HUB_DVTV29",
+  "TaxCode": "DV05CG"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39447"
+  },
+  "name": "Trị liệu cho khuôn mặt 10H ",
+  "category": "Academy",
+  "price": "2800000",
+  "status": "available",
+  "productCode": "Aca_KT4"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3944c"
+  },
+  "name": "Thở và Thiền",
+  "category": "Academy",
+  "price": "300000",
+  "status": "available",
+  "productCode": "Aca_KT9"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3944d"
+  },
+  "name": "Thở và Thiền ( Bao gồm Slide)",
+  "category": "Academy",
+  "price": "500000",
+  "status": "available",
+  "productCode": "Aca_KT10"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39452"
+  },
+  "name": "HLV Khoa học luân xa 30H",
+  "category": "Academy",
+  "price": "16500000",
+  "status": "available",
+  "productCode": "Aca_KT15",
+  "TaxCode": "KH08",
+  "image": "https://academy.khitamtherapy.com/wp-content/uploads/2025/02/3.png"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3945b"
+  },
+  "name": "2H học thử Khí Tâm Yoga Trị Liệu 200h",
+  "category": "Academy",
+  "price": "100000",
+  "status": "available",
+  "productCode": "Aca_KT24"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39469"
+  },
+  "name": "Tập Luyện Yoga KTTL CÙNG Master Sridevi Tố Hải",
+  "category": "Academy",
+  "price": "2000000",
+  "status": "available",
+  "productCode": "Aca_KT38"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3946c"
+  },
+  "name": "Luyện thân Dưỡng Khí 12H",
+  "category": "Academy",
+  "price": "1300000",
+  "status": "available",
+  "productCode": "Aca_KT41"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3946e"
+  },
+  "name": "Đáy thắt lưng 12H",
+  "category": "Academy",
+  "price": "1300000",
+  "status": "available",
+  "productCode": "Aca_KT43"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3946f"
+  },
+  "name": "Dáng thẳng Thân an 12H",
+  "category": "Academy",
+  "price": "1300000",
+  "status": "available",
+  "productCode": "Aca_KT44"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39472"
+  },
+  "name": "Khóa Liên Đoàn",
+  "category": "Academy",
+  "price": "4500000",
+  "status": "available",
+  "productCode": "Aca_KT47"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39477"
+  },
+  "name": "Khí Tâm hỗ trợ chăm sóc sức khoẻ chuyên sâu (Chuyên gia khác)",
+  "category": "Health Hub",
+  "price": "880000",
+  "status": "available",
+  "productCode": "HUB_DVTV2",
+  "image": "https://static.wixstatic.com/media/c424b9_eedfabb2d6004f70b8675767567ad0cf~mv2.jpg"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef3947d"
+  },
+  "name": "Khí Tâm huấn luyện chữa lành tâm trí (Chuyên gia khác)",
+  "category": "Health Hub",
+  "price": "1650000",
+  "status": "available",
+  "productCode": "HUB_DVTV8",
+  "TaxCode": "DV06"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef3947f"
+  },
+  "name": "Khí Tâm hỗ trợ chăm sóc sức khoẻ chuyên sâu (Cô Tố Hải)",
+  "category": "Health Hub",
+  "price": "4400000",
+  "status": "available",
+  "productCode": "HUB_DVTV10",
+  "image": "https://static.wixstatic.com/media/c424b9_026d8d9be6b84f988a0004cf3f8cdb09~mv2.jpg"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39483"
+  },
+  "name": "Thiền Khí Tâm chữa lành - Cô Tố Hải",
+  "category": "Health Hub",
+  "price": "4400000",
+  "status": "available",
+  "productCode": "HUB_DVTV14",
+  "TaxCode": "DV11CG"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39484"
+  },
+  "name": "Khí Tâm khoa học luân xa cân bằng năng lượng - Cô Tố Hải",
+  "category": "Health Hub",
+  "price": "4400000",
+  "status": "available",
+  "productCode": "HUB_DVTV15",
+  "TaxCode": "DV13CG"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef39489"
+  },
+  "name": "Khoa Học Luân Xa (2h)",
+  "category": "Health Hub",
+  "price": "500000",
+  "status": "available",
+  "productCode": "HUB_DVTV18"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef3948a"
+  },
+  "name": "Chương trình Giải độc cơ thể cùng KTTL 4h",
+  "category": "Health Hub",
+  "price": "1000000",
+  "status": "available",
+  "productCode": "HUB_DVTV19"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef3948d"
+  },
+  "name": "Khí Tâm phục hồi bảo dưỡng khớp",
+  "category": "Health Hub",
+  "price": "880000",
+  "status": "available",
+  "productCode": "HUB_DVTV22"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef39491"
+  },
+  "name": "Lót giày chỉnh hình cá nhân hóa",
+  "category": "Health Hub",
+  "price": "6000000",
+  "status": "available",
+  "productCode": "HUB_DVTV26",
+  "image": "https://static.wixstatic.com/media/c424b9_02b1dd26f006458392f729d9cc9d5b3c~mv2.jpg",
+  "TaxCode": "DV16"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef39492"
+  },
+  "name": "Khí Tâm tham vấn sức khỏe toàn diện trên 5 thể",
+  "category": "Health Hub",
+  "price": "12000000",
+  "status": "available",
+  "productCode": "HUB_DVTV27",
+  "TaxCode": "DV18CG",
+  "image": "https://healthhub.khitamtherapy.com/wp-content/uploads/2025/01/cat-4.png"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef39495"
+  },
+  "name": "Khí Tâm yoga cân bằng vận động (online)",
+  "category": "Health Hub",
+  "price": "380000",
+  "status": "available",
+  "productCode": "HUB_DVTV30",
+  "TaxCode": "DV09"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39444"
+  },
+  "name": "Trị Đau Lưng 14H",
+  "category": "Academy",
+  "price": "1800000",
+  "status": "available",
+  "productCode": "Aca_KT1",
+  "__v": 11,
+  "vouchers": [
+    {
+      "voucherValue": 100000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2025-01-07T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-28T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "67762deac7d3de277ef0f66c"
+      },
+      "createdDate": {
+        "$date": "2025-01-02T06:10:50.223Z"
+      },
+      "editLogs": []
+    },
+    {
+      "voucherValue": 200000,
+      "voucherType": "Coupon",
+      "validityPeriodFrom": {
+        "$date": "2025-01-07T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-23T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "677637a0501c9ec6c52cc886"
+      },
+      "createdDate": {
+        "$date": "2025-01-02T06:52:16.852Z"
+      },
+      "editLogs": []
+    },
+    {
+      "voucherValue": 250000,
+      "voucherType": "%",
+      "validityPeriodFrom": {
+        "$date": "2025-01-08T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-08T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "67763be9e35d4164de5a0fbb"
+      },
+      "createdDate": {
+        "$date": "2025-01-02T07:10:33.103Z"
+      },
+      "editLogs": []
+    },
+    {
+      "voucherValue": 200000,
+      "voucherType": "%",
+      "validityPeriodFrom": {
+        "$date": "2025-01-02T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-03T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "ewq",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "67763ca2e35d4164de5a0ff0"
+      },
+      "createdDate": {
+        "$date": "2025-01-02T07:13:38.269Z"
+      },
+      "editLogs": []
+    },
+    {
+      "voucherValue": 450000,
+      "voucherType": "%",
+      "validityPeriodFrom": {
+        "$date": "2024-12-31T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-10T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "67764aeb58d476ceb63f38fa"
+      },
+      "createdDate": {
+        "$date": "2025-01-02T08:14:35.749Z"
+      },
+      "editLogs": []
+    },
+    {
+      "voucherValue": 450000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2025-01-01T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-17T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "67764cdd58d476ceb63f398d"
+      },
+      "createdDate": {
+        "$date": "2025-01-02T08:22:53.111Z"
+      },
+      "editLogs": []
+    },
+    {
+      "voucherValue": 50,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2025-01-01T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-17T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "ưq",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "6776611758d476ceb63f3fe4"
+      },
+      "createdDate": {
+        "$date": "2025-01-02T09:49:11.935Z"
+      },
+      "editLogs": []
+    },
+    {
+      "voucherValue": 70,
+      "voucherType": "%",
+      "validityPeriodFrom": {
+        "$date": "2024-12-31T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-09T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "6776614058d476ceb63f4015"
+      },
+      "createdDate": {
+        "$date": "2025-01-02T09:49:52.372Z"
+      },
+      "editLogs": []
+    },
+    {
+      "voucherValue": 10,
+      "voucherType": "%",
+      "validityPeriodFrom": {
+        "$date": "2025-01-02T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-04T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "67779e03cf461757d4db1fcb"
+      },
+      "createdDate": {
+        "$date": "2025-01-03T08:21:23.035Z"
+      },
+      "editLogs": []
+    },
+    {
+      "voucherValue": 500000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2025-01-02T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-04T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "67779e63cf461757d4db2008"
+      },
+      "createdDate": {
+        "$date": "2025-01-03T08:22:59.489Z"
+      },
+      "editLogs": []
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39445"
+  },
+  "name": "Nuôi Con Bằng Lượng 14H",
+  "category": "Academy",
+  "price": "2000000",
+  "status": "available",
+  "productCode": "Aca_KT2",
+  "__v": 1,
+  "vouchers": [
+    {
+      "voucherValue": 10,
+      "voucherType": "%",
+      "validityPeriodFrom": {
+        "$date": "2025-01-02T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2025-01-04T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "67779f75cf461757d4db209c"
+      },
+      "createdDate": {
+        "$date": "2025-01-03T08:27:33.700Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "TaxCode": "KH12"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3944a"
+  },
+  "name": "Lớp Khí Tâm Yoga Nâng cao Sức khỏe cho cộng đồng",
+  "category": "Health Hub",
+  "price": "500000",
+  "status": "available",
+  "productCode": "HUB_DVTV41",
+  "TaxCode": "DV19"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3944f"
+  },
+  "name": "HLV Yoga Trị Liệu 200H (Offline)",
+  "category": "Academy",
+  "price": "51000000",
+  "status": "available",
+  "productCode": "Aca_KT12"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39453"
+  },
+  "name": "Chuyên gia chỉnh dáng 50H",
+  "category": "Academy",
+  "price": "22000000",
+  "status": "available",
+  "productCode": "Aca_KT16",
+  "TaxCode": "KH03"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39456"
+  },
+  "name": "Nhà huấn luyện NL cuộc đời- Life energy coach",
+  "category": "Academy",
+  "price": "16500000",
+  "status": "available",
+  "productCode": "Aca_KT19"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39457"
+  },
+  "name": "Chuyên gia phòng khám 100H",
+  "category": "Academy",
+  "price": "28600000",
+  "status": "available",
+  "productCode": "Aca_KT20",
+  "TaxCode": "KH13",
+  "image": "https://academy.khitamtherapy.com/wp-content/uploads/2025/02/2.png"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39459"
+  },
+  "name": "Chuyên viên trị liệu tự nhiên 150h (trị liệu bằng tay) - Online",
+  "category": "Academy",
+  "price": "32500000",
+  "status": "available",
+  "productCode": "Aca_KT22"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3945a"
+  },
+  "name": "Chuyên viên trị liệu tự nhiên 150h (trị liệu bằng tay) - Offline ",
+  "category": "Academy",
+  "price": "32500000",
+  "status": "available",
+  "productCode": "Aca_KT23"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39461"
+  },
+  "name": "HLV Yoga Trị Liệu 200h HyBRID (Hội An)",
+  "category": "Academy",
+  "price": "39000000",
+  "status": "available",
+  "productCode": "Aca_KT30"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3946d"
+  },
+  "name": "Giảm căng thẳng 12H",
+  "category": "Academy",
+  "price": "1300000",
+  "status": "available",
+  "productCode": "Aca_KT42"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39474"
+  },
+  "name": "Hơi Thở & Định Tuyến Trong Yoga 2H",
+  "category": "Academy",
+  "price": "1000000",
+  "status": "available",
+  "productCode": "Aca_KT49",
+  "TaxCode": "KH19"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39479"
+  },
+  "name": "Khí Tâm huấn luyện điều chỉnh dáng",
+  "category": "Health Hub",
+  "price": "660000",
+  "status": "available",
+  "productCode": "HUB_DVTV57",
+  "image": "https://static.wixstatic.com/media/c424b9_36e7424b158148728983b1ae233fa42e~mv2.jpg",
+  "TaxCode": "DV10"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef3947a"
+  },
+  "name": "Thiền Khí Tâm chữa lành",
+  "category": "Health Hub",
+  "price": "660000",
+  "status": "available",
+  "productCode": "HUB_DVTV5",
+  "image": "https://static.wixstatic.com/media/c424b9_947e9b9f13bb4ca7a29ad6cdfda25b4c~mv2.jpg",
+  "TaxCode": "DV11"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef3947e"
+  },
+  "name": "Khí Tâm tham vấn cân bằng cơ thể (Premium) - Cô Tố Hải",
+  "category": "Health Hub",
+  "price": "4400000",
+  "status": "available",
+  "productCode": "HUB_DVTV9",
+  "image": "https://static.wixstatic.com/media/c424b9_66cb48cdfb224a6b8a4b6019629c4de9~mv2.jpg",
+  "TaxCode": ""
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39482"
+  },
+  "name": "Khí Tâm huấn luyện điều chỉnh dáng - Cô Tố Hải",
+  "category": "Health Hub",
+  "price": "4400000",
+  "status": "available",
+  "productCode": "HUB_DVTV13",
+  "TaxCode": "DV10CG"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39448"
+  },
+  "name": "Khoa học luân xa 20H",
+  "category": "Academy",
+  "price": "3300000",
+  "status": "available",
+  "productCode": "Aca_KT5",
+  "TaxCode": "KH15"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39449"
+  },
+  "name": "Khoa học luân xa 20H (E-learning)",
+  "category": "Academy",
+  "price": "3300000",
+  "status": "available",
+  "productCode": "Aca_KT6",
+  "TaxCode": "KH09"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3944b"
+  },
+  "name": "Cách sử dụng phần mềm Muscle & Motion",
+  "category": "Academy",
+  "price": "250000",
+  "status": "available",
+  "productCode": "Aca_KT8",
+  "TaxCode": "KH21"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3944e"
+  },
+  "name": "HLV Yoga Trị Liệu 200H (Online)",
+  "category": "Academy",
+  "price": "33000000",
+  "status": "available",
+  "productCode": "Aca_KT11",
+  "TaxCode": "KH01",
+  "image": "https://academy.khitamtherapy.com/wp-content/uploads/2025/02/cat-7.png"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39450"
+  },
+  "name": "HLV Yoga Trị Liệu 300H",
+  "category": "Academy",
+  "price": "53000000",
+  "status": "available",
+  "productCode": "Aca_KT13"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39455"
+  },
+  "name": "Nhà Huấn Luyện Khí Tâm chữa lành 100H",
+  "category": "Academy",
+  "price": "30000000",
+  "status": "available",
+  "productCode": "Aca_KT18"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef3945c"
+  },
+  "name": "Xem lưng online qua Zoom ",
+  "category": "Academy",
+  "price": "200000",
+  "status": "available",
+  "productCode": "Aca_KT25"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39463"
+  },
+  "name": "HLV Yoga Trị Liệu 200h HyBRID (Đà Lạt)",
+  "category": "Academy",
+  "price": "39000000",
+  "status": "available",
+  "productCode": "Aca_KT32"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39464"
+  },
+  "name": "Trị liệu bằng tay 150H HyBRID (TPHCM)",
+  "category": "Academy",
+  "price": "36000000",
+  "status": "available",
+  "productCode": "Aca_KT33"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39465"
+  },
+  "name": "Trị liệu bằng tay 150H HyBRID (Hội An)",
+  "category": "Academy",
+  "price": "36000000",
+  "status": "available",
+  "productCode": "Aca_KT34"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39466"
+  },
+  "name": "HLV Yoga Trị Liệu 300H HyBRID (Hội An)",
+  "category": "Academy",
+  "price": "57800000",
+  "status": "available",
+  "productCode": "Aca_KT35"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39467"
+  },
+  "name": "Trị liệu gương mặt 4H nâng cao Offline",
+  "category": "Academy",
+  "price": "3500000",
+  "status": "available",
+  "productCode": "Aca_KT36"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39473"
+  },
+  "name": "Trị liệu bằng tay 150H Hybrid (Hà Nội)",
+  "category": "Academy",
+  "price": "36000000",
+  "status": "available",
+  "productCode": "Aca_KT48"
+},
+{
+  "_id": {
+    "$oid": "675aa90400bf98f42ef39475"
+  },
+  "name": "Trị liệu gương mặt Offline 3H cùng Master Tố Hải",
+  "category": "Academy",
+  "price": "3800000",
+  "status": "available",
+  "productCode": "Aca_KT50"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39476"
+  },
+  "name": "Khí Tâm tham vấn cân bằng cơ thể Premium (Chuyên gia khác)",
+  "category": "Health Hub",
+  "price": "2200000",
+  "status": "available",
+  "productCode": "HUB_DVTV1",
+  "__v": 1,
+  "vouchers": [],
+  "image": "https://static.wixstatic.com/media/c424b9_2b10b6a82fc24733bd17f076429a68f1~mv2.jpg",
+  "TaxCode": "DV02"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39478"
+  },
+  "name": "Khí Tâm yoga cân bằng vận động",
+  "category": "Health Hub",
+  "price": "660000",
+  "status": "available",
+  "productCode": "HUB_DVTV3",
+  "TaxCode": "DV08"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef3947b"
+  },
+  "name": "Khí Tâm khoa học luân xa cân bằng năng lượng",
+  "category": "Health Hub",
+  "price": "660000",
+  "status": "available",
+  "productCode": "HUB_DVTV6",
+  "image": "https://static.wixstatic.com/media/c424b9_6f6762db7b6a4bd4b817979b3bbaaec1~mv2.jpg",
+  "TaxCode": "DV13"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef3947c"
+  },
+  "name": "Bài kiểm tra 4 nguồn năng lượng của Mỹ",
+  "category": "Health Hub",
+  "price": "1650000",
+  "status": "available",
+  "productCode": "HUB_DVTV7"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39480"
+  },
+  "name": "Khí Tâm yoga cân bằng vận động - Cô Tố Hải",
+  "category": "Health Hub",
+  "price": "4400000",
+  "status": "available",
+  "productCode": "HUB_DVTV11",
+  "TaxCode": "DV08CG"
+},
+{
+  "_id": {
+    "$oid": "675aa9ff00bf98f42ef39485"
+  },
+  "name": "Bài kiểm tra 4 nguồn năng lượng của Mỹ - Cô Tố Hải",
+  "category": "Health Hub",
+  "price": "2750000",
+  "status": "available",
+  "productCode": "HUB_DVTV16",
+  "TaxCode": "DV17CG"
+},
+{
+  "_id": {
+    "$oid": "675aaa6f00bf98f42ef3948c"
+  },
+  "name": "Khí Tâm Cân chỉnh Gương Mặt (Chuyên gia khác)",
+  "category": "Health Hub",
+  "price": "770000",
+  "status": "available",
+  "productCode": "HUB_DVTV21"
+},
+{
+  "_id": {
+    "$oid": "67861b8a824fb693324ab004"
+  },
+  "name": "Trị liệu bằng tay cho Gia Đình ",
+  "category": "Academy",
+  "price": 1800000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "Aca_KT52",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67861cb7824fb693324ab083"
+  },
+  "name": "Trị Liệu Bằng Tay",
+  "category": "Academy",
+  "price": 25000000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "Aca_KT53",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67861cf9824fb693324ab094"
+  },
+  "name": "Trị liệu bằng tay 1100h",
+  "category": "Academy",
+  "price": 181500000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "Aca_KT54",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678b650738f25ed3891afed4"
+  },
+  "name": "membership cơ xương khớp dành cho trẻ dưới 6t",
+  "category": "Academy",
+  "price": 5000000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "Aca_KT55",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678b652c38f25ed3891afee5"
+  },
+  "name": "CTV đã học KHLX 20h",
+  "category": "Academy",
+  "price": 2000000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "Aca_KT56",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67944d7efea94c326e1e4c4e"
+  },
+  "name": "Membership Chăm sóc cơ xương khớp  cho bé dưới 6t",
+  "category": "Health Hub",
+  "price": 5000000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "HUB_DVTV24",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67aa0b3a4fd7963d17834fab"
+  },
+  "name": "Lớp CC Liên Đoàn Yoga Việt Nam (học viên Khí Tâm)",
+  "category": "Health Hub",
+  "price": 4500000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "HUB_DVTV43",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67aa1e694fd7963d17835008"
+  },
+  "name": "Lớp CC Liên Đoàn Yoga Việt Nam (học viên bên ngoài)",
+  "category": "Health Hub",
+  "price": 5500000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "HUB_DVTV47",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d29ca3e28e937c995d2895"
+  },
+  "name": "Phục Hồi NL Luân Xa bằng các thế yoga",
+  "category": "Academy",
+  "price": 1500000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "Aca_KT59",
+  "__v": 0,
+  "TaxCode": "KH17"
+},
+{
+  "_id": {
+    "$oid": "67d7876be28e937c995d3b61"
+  },
+  "name": "Gói trị liệu cộng đồng",
+  "category": "Health Hub",
+  "price": 1200000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "HUB_DVTV31",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67eb90608703197c0c956195"
+  },
+  "name": "Lớp Khí Tâm Yoga Nâng cao Sức khỏe cho cộng đồng - cô Tố Hải ",
+  "category": "Academy",
+  "price": 1000000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "Aca_KT60",
+  "__v": 0,
+  "TaxCode": "KH23"
+},
+{
+  "_id": {
+    "$oid": "6836e91b7292cd91bba61562"
+  },
+  "name": "Trị liệu cộng đồng với chuyên gia tại Hub",
+  "category": "Health Hub",
+  "price": 660000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "HUB_DVTV32",
+  "__v": 0,
+  "image": "https://static.wixstatic.com/media/c424b9_7b32ac8d06554f38b307279cdfb56f24~mv2.jpg"
+},
+{
+  "_id": {
+    "$oid": "684cd53ff0e5cdf5af5dea66"
+  },
+  "name": "Kiến thức giải phẫu chuyên biệt dành cho HLV Yoga 12hrs",
+  "category": "Academy",
+  "price": 7000000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "Aca_KT61",
+  "__v": 0,
+  "TaxCode": "KH04"
+},
+{
+  "_id": {
+    "$oid": "685bbeca6bbad670b2cd68ff"
+  },
+  "name": "Mentor ",
+  "category": "Academy",
+  "price": 10000000,
+  "status": "available",
+  "vouchers": [],
+  "productCode": "Aca_KT62",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689403912d0e587baee18994"
+  },
+  "name": "Thở và Thiền trị liệu 6h ",
+  "category": "Academy",
+  "price": 3000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT64",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a01f216312c1cfb6e0728e"
+  },
+  "name": "Phục hồi năng lượng luân xa bằng các thế Yoga 7hrs",
+  "category": "Academy",
+  "price": 1500000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT65",
+  "__v": 0,
+  "TaxCode": "KH17"
+},
+{
+  "_id": {
+    "$oid": "68a021436312c1cfb6e07498"
+  },
+  "name": " Khí Tâm Massage Therapy ( Cô Tố Hải)",
+  "category": "Health Hub",
+  "price": 4400000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV33",
+  "__v": 0,
+  "TaxCode": "DV01CG"
+},
+{
+  "_id": {
+    "$oid": "68a554576312c1cfb6e09dc5"
+  },
+  "name": "Chuyên viên chăm sóc sức khoẻ bằng pp thủ công ",
+  "category": "Academy",
+  "price": 25000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT66",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a554a26312c1cfb6e09dd6"
+  },
+  "name": "Chuyên viên chăm sóc sức khoẻ bằng pp thủ công ",
+  "category": "Academy",
+  "price": 25000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT67",
+  "__v": 0,
+  "TaxCode": "KH05"
+},
+{
+  "_id": {
+    "$oid": "68d8a3b99509f92daaccce3a"
+  },
+  "name": " Khí Tâm Yoga Trị Liệu Nội Tiết Tố ",
+  "category": "Academy",
+  "price": 3300000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT68",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68d8a3cf9509f92daaccce4b"
+  },
+  "name": " Khí Tâm Yoga Trị Liệu Vai Cổ Gáy",
+  "category": "Academy",
+  "price": 3300000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT69",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68dbb8fa9509f92daacceca1"
+  },
+  "name": "Khí Tâm Massage Therapy (Chuyên gia khác)",
+  "category": "Health Hub",
+  "price": 770000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV34",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68dbb9f89509f92daaccecb2"
+  },
+  "name": "Khí Tâm Cân chỉnh Gương Mặt (cô Tố Hải)",
+  "category": "Health Hub",
+  "price": 4400000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV35",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68dbc2a19509f92daacced58"
+  },
+  "name": "Khí Tâm tham vấn cân bằng  cơ thể Premium - Online (posture+freemed) (Cô Tố Hải)",
+  "category": "Health Hub",
+  "price": 3200000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV36",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68dbc4179509f92daacced69"
+  },
+  "name": "Khí Tâm tham vấn cân bằng  cơ thể Basic - Online (posture) (Cô Tố Hải)",
+  "category": "Health Hub",
+  "price": 1600000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV37",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68dbc6729509f92daacced7a"
+  },
+  "name": "Khí Tâm tham vấn cân bằng  cơ thể Basic - Online (posture) (Chuyên gia khác)",
+  "category": "Health Hub",
+  "price": 1000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV38",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f725cb9509f92daacd9ad7"
+  },
+  "name": "Test",
+  "category": "Health Hub",
+  "price": 10000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV39",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68f725f49509f92daacd9b1b"
+  },
+  "name": "Ứng dụng Khí Tâm Trị Liệu gia tăng miễn dịch & phòng bệnh hô hấp theo mùa 3h ",
+  "category": "Academy",
+  "price": 800000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT70",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6904914bf476fc264a6eb2a9"
+  },
+  "name": "Khí Tâm đo freemed onsite (chuyên gia khác)",
+  "category": "Health Hub",
+  "price": 1100000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV41",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69049160f476fc264a6eb2ba"
+  },
+  "name": "Khí Tâm yoga cân bằng  vận động - HLV  hướng dẫn tại nhà khách hàng",
+  "category": "Health Hub",
+  "price": 770,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV42",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690d682af476fc264a6f31ff"
+  },
+  "name": "Đào Tạo Nghiệp Huấn Giảng Trị Bằng 98h Level ",
+  "category": "Academy",
+  "price": 12500000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT69",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "694a3b62b16b0f552f617d65"
+  },
+  "name": "Chỉnh Dáng Khí Tâm",
+  "category": "Academy",
+  "price": 500000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT68",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69b414ced7cca79b3233e15c"
+  },
+  "name": "Lotus Member",
+  "category": "Academy",
+  "price": 0,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT69",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69b414e5d7cca79b3233e16d"
+  },
+  "name": "Khóa học chuyên đề Khí Tâm",
+  "category": "Academy",
+  "price": 500000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT70",
+  "__v": 0,
+  "TaxCode": "CD500"
+},
+{
+  "_id": {
+    "$oid": "69b414f2d7cca79b3233e17e"
+  },
+  "name": "Khí Tâm Yoga for face",
+  "category": "Academy",
+  "price": 500000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT71",
+  "__v": 0,
+  "TaxCode": "KH01"
+},
+{
+  "_id": {
+    "$oid": "69b414ffd7cca79b3233e18f"
+  },
+  "name": "Khí Tâm Trị Liệu cho gương mặt",
+  "category": "Academy",
+  "price": 2800000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT72",
+  "__v": 0,
+  "TaxCode": "KH02"
+},
+{
+  "_id": {
+    "$oid": "69b41529d7cca79b3233e1a0"
+  },
+  "name": "Phòng bệnh hô hấp",
+  "category": "Academy",
+  "price": "500000",
+  "status": "available",
+  "image": "",
+  "vouchers": [
+    {
+      "voucherValue": 300000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2026-03-12T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2026-04-25T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "69b4fc3e19a8d577475a87fa"
+      },
+      "createdDate": {
+        "$date": "2026-03-14T06:12:14.266Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "productCode": "Aca_KT73",
+  "__v": 1,
+  "TaxCode": "KH03"
+},
+{
+  "_id": {
+    "$oid": "69b41536d7cca79b3233e1b1"
+  },
+  "name": "Thở & Thiền trị liệu ",
+  "category": "Academy",
+  "price": "1800000",
+  "status": "available",
+  "image": "",
+  "vouchers": [
+    {
+      "voucherValue": 1200000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2026-03-11T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2026-04-18T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "69b4fc7219a8d577475a882c"
+      },
+      "createdDate": {
+        "$date": "2026-03-14T06:13:06.400Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "productCode": "Aca_KT74",
+  "__v": 1,
+  "TaxCode": "KH04"
+},
+{
+  "_id": {
+    "$oid": "69b41540d7cca79b3233e1c2"
+  },
+  "name": "Khí Tâm Trị Liệu - chiến binh K",
+  "category": "Academy",
+  "price": 500000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT75",
+  "__v": 0,
+  "TaxCode": "KH05"
+},
+{
+  "_id": {
+    "$oid": "69b41550d7cca79b3233e1d3"
+  },
+  "name": "Khoa học luân xa 20hrs",
+  "category": "Academy",
+  "price": 3300000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT76",
+  "__v": 0,
+  "TaxCode": "KH06"
+},
+{
+  "_id": {
+    "$oid": "69b41559d7cca79b3233e1e4"
+  },
+  "name": "Khí Tâm HLV Yoga trị liệu 200hrs",
+  "category": "Academy",
+  "price": 33000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT77",
+  "__v": 0,
+  "TaxCode": "KH200"
+},
+{
+  "_id": {
+    "$oid": "69b41561d7cca79b3233e1f5"
+  },
+  "name": "Khí Tâm trị liệu bằng tay 100hrs",
+  "category": "Academy",
+  "price": 25000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT78",
+  "__v": 0,
+  "TaxCode": "KH100"
+},
+{
+  "_id": {
+    "$oid": "69b4156cd7cca79b3233e206"
+  },
+  "name": "Khí Tâm HLV Yoga trị liệu 300hrs",
+  "category": "Academy",
+  "price": 53000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT79",
+  "__v": 0,
+  "TaxCode": "KH300"
+},
+{
+  "_id": {
+    "$oid": "69b41576d7cca79b3233e217"
+  },
+  "name": "Hành trình chiến binh K",
+  "category": "Academy",
+  "price": 500000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT80",
+  "__v": 0,
+  "TaxCode": "KH07"
+},
+{
+  "_id": {
+    "$oid": "69b4157fd7cca79b3233e228"
+  },
+  "name": "Khí Tâm Yoga Self-care 100hrs",
+  "category": "Academy",
+  "price": 18000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT81",
+  "__v": 0,
+  "TaxCode": "KHS100"
+},
+{
+  "_id": {
+    "$oid": "69b41588d7cca79b3233e239"
+  },
+  "name": "Membership Basic",
+  "category": "Academy",
+  "price": "4200000",
+  "status": "available",
+  "image": "",
+  "vouchers": [
+    {
+      "voucherValue": 1800000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2026-03-11T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2026-04-18T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "69b4fc8b19a8d577475a882f"
+      },
+      "createdDate": {
+        "$date": "2026-03-14T06:13:31.283Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "productCode": "Aca_KT82",
+  "__v": 1,
+  "TaxCode": "MB4200"
+},
+{
+  "_id": {
+    "$oid": "69b4158fd7cca79b3233e24a"
+  },
+  "name": "VIP Membership (Master Mind)",
+  "category": "Academy",
+  "price": "150000000",
+  "status": "available",
+  "image": "",
+  "vouchers": [
+    {
+      "voucherValue": 3000000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2026-03-12T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2026-04-25T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "69b4fc9e19a8d577475a8832"
+      },
+      "createdDate": {
+        "$date": "2026-03-14T06:13:50.099Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "productCode": "Aca_KT83",
+  "__v": 1,
+  "TaxCode": "MBVIP"
+},
+{
+  "_id": {
+    "$oid": "69b41597d7cca79b3233e25b"
+  },
+  "name": "Tư vấn cùng Nhà sáng lập",
+  "category": "Academy",
+  "price": 1900000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT84",
+  "__v": 0,
+  "TaxCode": "66DV01"
+},
+{
+  "_id": {
+    "$oid": "69b4159ed7cca79b3233e26c"
+  },
+  "name": "Tư vấn chuyên sâu cùng Nhà sáng lập",
+  "category": "Academy",
+  "price": 5700000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT85",
+  "__v": 0,
+  "TaxCode": "DV02"
+},
+{
+  "_id": {
+    "$oid": "69b415a6d7cca79b3233e27d"
+  },
+  "name": "Đế dép chỉnh hình cá nhân hóa",
+  "category": "Academy",
+  "price": 6000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT86",
+  "__v": 0,
+  "TaxCode": "DV03"
+},
+{
+  "_id": {
+    "$oid": "69b415aed7cca79b3233e28e"
+  },
+  "name": "Đo áp lực bàn chân & chẩn đoán trục cơ thể",
+  "category": "Health Hub",
+  "price": 1000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV46",
+  "__v": 0,
+  "TaxCode": "DV04"
+},
+{
+  "_id": {
+    "$oid": "69b415c0d7cca79b3233e2b0"
+  },
+  "name": "Chương trình đối tác đào tạo",
+  "category": "Academy",
+  "price": 10000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT89",
+  "__v": 0,
+  "TaxCode": "CT01"
+},
+{
+  "_id": {
+    "$oid": "69b41606d7cca79b3233e2c1"
+  },
+  "name": "Combo Nghề vàng trong tay",
+  "category": "Health Hub",
+  "price": 39000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [
+    {
+      "voucherValue": 33150000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2026-03-04T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2026-04-25T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "69b4fcb919a8d577475a8835"
+      },
+      "createdDate": {
+        "$date": "2026-03-14T06:14:17.428Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "productCode": "HUB_DVTV58",
+  "__v": 1,
+  "TaxCode": "CB01"
+},
+{
+  "_id": {
+    "$oid": "69b4160dd7cca79b3233e2d2"
+  },
+  "name": "Combo Trị liệu toàn diện",
+  "category": "Health Hub",
+  "price": 58000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [
+    {
+      "voucherValue": 49300000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2026-03-03T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2026-05-02T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "69b4fccb19a8d577475a8838"
+      },
+      "createdDate": {
+        "$date": "2026-03-14T06:14:35.951Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "productCode": "HUB_DVTV59",
+  "__v": 1,
+  "TaxCode": "CB02"
+},
+{
+  "_id": {
+    "$oid": "69b41614d7cca79b3233e2e3"
+  },
+  "name": "Combo Bậc thầy chuyển động",
+  "category": "Health Hub",
+  "price": 86000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [
+    {
+      "voucherValue": 73100000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2026-03-12T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2026-04-10T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "69b4fce419a8d577475a883b"
+      },
+      "createdDate": {
+        "$date": "2026-03-14T06:15:00.428Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "productCode": "HUB_DVTV60",
+  "__v": 1,
+  "TaxCode": "CB03"
+},
+{
+  "_id": {
+    "$oid": "69b4161fd7cca79b3233e2f4"
+  },
+  "name": "Combo Chăm sóc sức khỏe",
+  "category": "Health Hub",
+  "price": 7100000,
+  "status": "available",
+  "image": "",
+  "vouchers": [
+    {
+      "voucherValue": 6100000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2026-03-04T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2026-04-18T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "69b4fcf719a8d577475a883e"
+      },
+      "createdDate": {
+        "$date": "2026-03-14T06:15:19.469Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "productCode": "HUB_DVTV62",
+  "__v": 1,
+  "TaxCode": "CB05"
+},
+{
+  "_id": {
+    "$oid": "69b41627d7cca79b3233e305"
+  },
+  "name": "Combo Làm đẹp",
+  "category": "Health Hub",
+  "price": 2800000,
+  "status": "available",
+  "image": "",
+  "vouchers": [
+    {
+      "voucherValue": 2300000,
+      "voucherType": "Amount",
+      "validityPeriodFrom": {
+        "$date": "2026-03-05T00:00:00.000Z"
+      },
+      "validityPeriodTo": {
+        "$date": "2026-04-18T00:00:00.000Z"
+      },
+      "attachedFile": null,
+      "status": "active",
+      "note": "",
+      "createdBy": {
+        "$oid": "6673b41f56d8b67ed4a5465e"
+      },
+      "_id": {
+        "$oid": "69b4fd0919a8d577475a8841"
+      },
+      "createdDate": {
+        "$date": "2026-03-14T06:15:37.595Z"
+      },
+      "editLogs": []
+    }
+  ],
+  "productCode": "HUB_DVTV63",
+  "__v": 1,
+  "TaxCode": "CB06"
+},
+{
+  "_id": {
+    "$oid": "69c32daeadceafc0799f7563"
+  },
+  "name": "Lotus Member",
+  "category": "Academy",
+  "price": 0,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "Aca_KT94",
+  "__v": 0,
+  "TaxCode": "MBCD"
+},
+{
+  "_id": {
+    "$oid": "69c601d6424249c7a26d32a9"
+  },
+  "name": "Đo độ cân bằng cơ thể lần 1",
+  "category": "Health Hub",
+  "price": 500000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV48",
+  "__v": 0,
+  "TaxCode": "DVDT01"
+},
+{
+  "_id": {
+    "$oid": "69c601e7424249c7a26d32c3"
+  },
+  "name": "Đo độ cân bằng cơ thể lần 2",
+  "category": "Health Hub",
+  "price": 300000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV49",
+  "__v": 0,
+  "TaxCode": "DVDT02"
+},
+{
+  "_id": {
+    "$oid": "69d3625f1afd90a4f0930204"
+  },
+  "name": "Khám sức khỏe tổng quát & tư vấn toàn diện",
+  "category": "Health Hub",
+  "price": 1995000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV43",
+  "__v": 0,
+  "TaxCode": "DV01"
+},
+{
+  "_id": {
+    "$oid": "69d362701afd90a4f093021e"
+  },
+  "name": "Gói Tầm soát sức khỏe cân bằng vận động",
+  "category": "Health Hub",
+  "price": 6300000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV44",
+  "__v": 0,
+  "TaxCode": "DV02"
+},
+{
+  "_id": {
+    "$oid": "69d3627f1afd90a4f0930238"
+  },
+  "name": "Trị liệu chuyên sâu cùng Chuyên viên Khí Tâm",
+  "category": "Health Hub",
+  "price": 1000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV51",
+  "__v": 0,
+  "TaxCode": "DV07"
+},
+{
+  "_id": {
+    "$oid": "69d684c61afd90a4f0934349"
+  },
+  "name": "Tầm soát cân nặng, trị liệu & chỉnh dáng",
+  "category": "Health Hub",
+  "price": 6300000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV45",
+  "__v": 0,
+  "TaxCode": "DV03"
+},
+{
+  "_id": {
+    "$oid": "69d685181afd90a4f0934363"
+  },
+  "name": "Combo đo áp lực chân & tư vấn VIP",
+  "category": "Health Hub",
+  "price": 1995000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV47",
+  "__v": 0,
+  "TaxCode": "DV05"
+},
+{
+  "_id": {
+    "$oid": "69d6859f1afd90a4f093437d"
+  },
+  "name": "Thăm khám & trị liệu chuyên sâu",
+  "category": "Health Hub",
+  "price": 5775000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV50",
+  "__v": 0,
+  "TaxCode": "DV06"
+},
+{
+  "_id": {
+    "$oid": "69d685d21afd90a4f0934397"
+  },
+  "name": "Yoga trị liệu cá nhân",
+  "category": "Health Hub",
+  "price": 500000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV52",
+  "__v": 0,
+  "TaxCode": "DV08"
+},
+{
+  "_id": {
+    "$oid": "69d685fa1afd90a4f09343b1"
+  },
+  "name": "Đế dép chỉnh hình Khí Tâm",
+  "category": "Health Hub",
+  "price": 6000000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV53",
+  "__v": 0,
+  "TaxCode": "DV09"
+},
+{
+  "_id": {
+    "$oid": "69d686371afd90a4f09343cb"
+  },
+  "name": "Khóa học luân xa trọn đời",
+  "category": "Health Hub",
+  "price": 3300000,
+  "status": "available",
+  "image": "",
+  "vouchers": [],
+  "productCode": "HUB_DVTV56",
+  "__v": 0,
+  "TaxCode": "KH06"
+}]

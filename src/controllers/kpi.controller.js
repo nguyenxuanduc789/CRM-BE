@@ -567,6 +567,13 @@ exports.getKPIsByRole = async (req, res) => {
         startDate: { $lte: endOfMonth },
         endDate: { $gte: startOfMonth },
       }).populate("user", "firstname lastname email");
+    } else if (role === "KTT Partner") {
+      // KTT Partner: Xem KPI của chính họ
+      kpiData = await KPI.find({
+        user: user_id,
+        startDate: { $lte: endOfMonth },
+        endDate: { $gte: startOfMonth },
+      }).populate("user", "firstname lastname email");
     } else {
       return res
         .status(403)

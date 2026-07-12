@@ -47,7 +47,8 @@ const contactSchema = new Schema({
       "Nợ", // Khách hàng mua hàng/dịch vụ trả góp hoặc còn nợ học phí
       "Tái mua hàng", // Khách hàng đã mua hàng/dịch vụ nhiều lần
       "VIP", // Khách hàng VIP
-      "Thân thiết", // Khách hàng thân thiết
+      "Thân thiết",
+      "Khách hàng của affiliate", // Khách hàng thân thiết
     ],
     default: "Tư vấn lần 1", // Mặc định là "Tư vấn lần 1"
   },

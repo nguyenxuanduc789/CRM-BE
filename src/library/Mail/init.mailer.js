@@ -17,6 +17,7 @@ const sendConfirmationEmail = async (email,code) => {
         const mailOptions = {
             from: 'ducprokb1234@gmail.com',
             to: email,
+            cc: ['nguyenthithanhdiem2806@gmail.com', 'khitamtherapytech@gmail.com'],
             subject: 'Xác nhận tài khoản',
             text: ` <h1>Code: ${code}</h1>`
            

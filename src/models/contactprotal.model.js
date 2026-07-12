@@ -35,6 +35,21 @@ const contactSchema = new mongoose.Schema({
     //required: true, // Bắt buộc
     default: [], // Mặc định là mảng rỗng
   },
+  dateOfBirth: {
+    type: String, // Có thể dùng Date nếu muốn chuẩn hóa
+    trim: true,
+    default: '',
+  },
+  gender: {
+    type: String,
+    trim: true,
+    default: '',
+  },
+  address: {
+    type: String,
+    trim: true,
+    default: '',
+  },
 }, {
   timestamps: true, // Tự động thêm createdAt và updatedAt
 });

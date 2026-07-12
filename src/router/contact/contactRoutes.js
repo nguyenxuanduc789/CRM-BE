@@ -1,35 +1,52 @@
-// contactRoutes.js
 const express = require('express');
 const router = express.Router();
+
 const {
   createContact,
-  getContacts,
-  getContactsByAssignedTo,
-  updateContact,
-  deleteContact,
   getContactsrole,
-  getContactstudents,
+  getContactsByAssignedTo,
   findContactsForUser,
+  suggestContacts,
+  getContactstudents,
+  getContactstudentss,
+  getActiveUsers,
+  updateContact,
+  assignContact,
   createContactWithRelationship,
+  importContactsFromExcel,
+  uploadExcelMiddleware,
+  searchByProduct,
+  exportContactsToExcel,
 } = require('../../controllers/contact.controller');
 
-// Tạo một contact mới
-router.post('/createContact', createContact);
-router.post('/invalidEndpoint', createContactWithRelationship);
-router.put("/contact/:id", updateContact);
-// Lấy tất cả các contact findContactsForUser
-router.get('/assignedTo/:userId', getContactsByAssignedTo);
-router.get('/assignedTos/:userId', findContactsForUser);
-router.get('/contacts', getContactsrole);
+// ====================== ROUTES ======================
 
-router.get('/contactsstudents', getContactstudents);
-// // Lấy một contact theo ID
-// router.get('/:contactId', getContactById);
+// ── GET ─────────────────────────────────────────────
+router.get('/export-excel',           exportContactsToExcel);
+router.get('/users/active',           getActiveUsers);
+router.get('/contacts',               getContactsrole);
+router.get('/suggest-contacts',       suggestContacts);
+router.get('/contactsstudents',       getContactstudents);
+router.get('/contactsstudentss',      getContactstudentss);
+router.get('/searchbyproduct', searchByProduct);
 
-// // Cập nhật contact theo ID
-// router.put('/:contactId', updateContact);
+router.get('/assignedTo/:userId',     getContactsByAssignedTo);
+router.get('/assignedTos/:userId',    findContactsForUser);
 
-// // Xóa contact theo ID
-// router.delete('/:contactId', deleteContact);
+// ── POST ────────────────────────────────────────────
+router.post('/createContact',         createContact);
+
+// ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+router.post('/importContactsFromExcel',   // ←←← ĐÃ SỬA TÊN ROUTE
+  uploadExcelMiddleware,                  // Multer phải đứng trước
+  importContactsFromExcel
+);
+// ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+
+router.post('/addRelationship',       createContactWithRelationship); // đổi tên cho rõ ràng hơn
+
+// ── PUT / PATCH ─────────────────────────────────────
+router.put('/contact/:id',            updateContact);
+router.patch('/assign/:contactId',    assignContact);
 
 module.exports = router;

@@ -8,7 +8,10 @@ const findProductsByCategoryAndName = async (req, res) => {
     let searchConditions = { status: { $ne: "unavailable" } }; // Bắt đầu với điều kiện không lấy sản phẩm "unavailable"
 
     if (query) {
-      searchConditions.name = { $regex: query, $options: "i" }; // Tìm kiếm theo tên sản phẩm
+      searchConditions.$or = [
+        { name: { $regex: query, $options: "i" } },
+        { TaxCode: { $regex: query, $options: "i" } },
+      ];
     }
 
     // Tìm kiếm sản phẩm dựa trên điều kiện
@@ -93,35 +96,41 @@ const createProduct = async (req, res) => {
   try {
     const { name, category, price, vouchers } = req.body;
 
-    // Chuyển giá trị price thành số nếu cần
+    // Validate input
+    if (!name || !category || !price) {
+      return res.status(400).json({ message: "Tên, danh mục và giá là bắt buộc." });
+    }
     const parsedPrice = parseFloat(price);
+    if (isNaN(parsedPrice) || parsedPrice < 0) {
+      return res.status(400).json({ message: "Giá phải là số dương." });
+    }
 
-    // Lấy thông tin createdBy từ req.user nếu có (nếu bạn sử dụng xác thực người dùng)
     const createdBy = req.user ? req.user.id : null;
 
-    // Tạo sản phẩm mới mà không truyền productCode, vì mã này sẽ được tự động tạo trong middleware
     const newProduct = new Product({
       name,
       category,
       price: parsedPrice,
       vouchers,
-      createdBy
+      createdBy,
     });
 
-    // Lưu sản phẩm vào cơ sở dữ liệu
     await newProduct.save();
 
-    // Trả về thông báo thành công và thông tin sản phẩm mới tạo
     res.status(201).json({
-      message: 'Sản phẩm đã được tạo thành công!',
-      product: newProduct
+      message: "Sản phẩm đã được tạo thành công!",
+      product: newProduct,
     });
   } catch (error) {
-    console.error('Lỗi khi tạo sản phẩm:', error); // Log lỗi chi tiết
-    res.status(500).json({ message: 'Lỗi khi tạo sản phẩm', error });
+    console.error("Lỗi khi tạo sản phẩm:", error);
+    if (error.code === 11000 && error.keyPattern.productCode) {
+      return res.status(400).json({
+        message: `Mã sản phẩm "${error.keyValue.productCode}" đã tồn tại. Vui lòng thử lại.`,
+      });
+    }
+    res.status(500).json({ message: "Lỗi khi tạo sản phẩm", error: error.message });
   }
 };
-
 
 module.exports = {
   findProductsByCategoryAndName,

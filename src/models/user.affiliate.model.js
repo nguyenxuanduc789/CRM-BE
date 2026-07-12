@@ -26,6 +26,22 @@ const affiliateSchema = new mongoose.Schema({
     trim: true,
     match: [/^[a-zA-Z0-9_-]+$/, 'Mã Affiliate ID chỉ được chứa chữ cái, số, dấu gạch dưới hoặc dấu gạch ngang'],
   },
+  stk: {
+    type: String,
+    required: [true, 'Số tài khoản là bắt buộc'],
+    trim: true,
+    match: [/^[0-9]+$/, 'Số tài khoản chỉ được chứa số'],
+  },
+  nganHang: {
+    type: String,
+    required: [true, 'Tên ngân hàng là bắt buộc'],
+    trim: true,
+  },
+  chuTaiKhoan: {
+    type: String,
+    required: [true, 'Chủ tài khoản là bắt buộc'],
+    trim: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

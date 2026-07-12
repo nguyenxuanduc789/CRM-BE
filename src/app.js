@@ -15,8 +15,9 @@ const app = express();
 const PipelinePortal = require('./models/pipeline_portal.model'); // Đường dẫn đến model Pipeline_Portal
 const ContactPortal = require('./models/contactprotal.model');   // Đường dẫn đến model Contact_Portal
 const Product = require('./models/product.model');                // Đường dẫn đến model Product
+const HubPortal = require('./models/HubPortal.model'); // Đường dẫn đến model Hub_Portal
 // app.post('/api/pipeline/import', upload.single('file'), async (req, res) => {
-
+const moment = require('moment');
 // Cấu hình CORS
 const corsOptions = {
   origin: "*", // Cho phép tất cả các nguồn
@@ -24,6 +25,26 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"], // Các header được phép
   credentials: true, // Cho phép gửi cookies hoặc token trong yêu cầu
 };
+const { parse } = require('csv-parse');
+const fileUpload = require('express-fileupload');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Sử dụng CORS trên toàn bộ các route
 app.use(cors(corsOptions));
@@ -32,7 +53,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("short"));
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 app.use(compression());
 
 // Static file
@@ -41,9 +64,19 @@ app.use(
   express.static(path.join(__dirname, "controllers/uploads"))
 );
 
+// LMS: static files for video và document uploads
+app.use("/uploads/videos",    express.static(path.join(__dirname, "uploads/videos")));
+app.use("/uploads/documents", express.static(path.join(__dirname, "uploads/documents")));
+
 // Routes
 const workstreamRoutes = require("./router/workstream/workstreamRoutes");
 app.use("/api", workstreamRoutes);
+
+const certificateRoutes = require("./router/certificate.router");
+app.use("/api/certificates", certificateRoutes);
+
+const lmsRoutes = require("./router/lms");
+app.use("/api/lms", lmsRoutes);
 
 const SaleKit = require("./models/salekit.model");
 
@@ -58,6 +91,495 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
+
+
+app.delete("/api/saleKit/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+ 
+    const saleKit = await SaleKit.findByIdAndDelete(id);
+    if (!saleKit) {
+      return res.status(404).json({ message: "Không tìm thấy Sale Kit" });
+    }
+ 
+    return res.status(200).json({ message: "Xoá Sale Kit thành công" });
+ 
+  } catch (err) {
+    console.error("❌ deleteSaleKit:", err);
+    return res.status(500).json({ message: "Lỗi server", error: err.message });
+  }
+});
+
+
+
+
+
+
+
+
+
+async function getNextIdaca() {
+  try {
+    // Tìm idaca lớn nhất
+    const lastContact = await ContactPortal.findOne()
+      .sort({ idaca: -1 })
+      .select('idaca');
+    
+    let nextId = 5020; // Giá trị bắt đầu
+    if (lastContact && lastContact.idaca && !isNaN(parseInt(lastContact.idaca))) {
+      nextId = Math.max(nextId, parseInt(lastContact.idaca) + 1);
+    }
+    
+    // Kiểm tra lại để đảm bảo idaca không tồn tại
+    let existingContact;
+    do {
+      existingContact = await ContactPortal.findOne({ idaca: nextId.toString() });
+      if (existingContact) {
+        nextId++;
+      }
+    } while (existingContact);
+    
+    return nextId.toString();
+  } catch (error) {
+    throw new Error(`Lỗi khi tạo idaca: ${error.message}`);
+  }
+}
+
+// API endpoint để nhập file Excel
+// API endpoint để nhập file Excel
+// API endpoint để nhập file Excel
+app.post('/api/import', upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'Vui lòng upload file Excel' });
+    }
+
+    // Đọc file Excel từ đường dẫn trên đĩa
+    const workbook = XLSX.readFile(req.file.path);
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const data = XLSX.utils.sheet_to_json(sheet);
+
+    // Mảng lưu trữ kết quả nhập
+    const results = [];
+
+    for (const row of data) {
+      // Bước 1: Xử lý danh sách sản phẩm để xác định Typesource
+      const products = row['Sản Phẩm'] ? row['Sản Phẩm'].split(',').map((p) => p.trim()) : [];
+      const productQuantities = {};
+      const typesource = new Set();
+
+      // Đếm số lượng từng sản phẩm và kiểm tra danh mục
+      for (const product of products) {
+        const productName = product.split(' - ')[0].trim().replace(/\s+/g, ' '); // Chuẩn hóa khoảng trắng
+        productQuantities[productName] = (productQuantities[productName] || 0) + 1;
+
+        const productData = await Product.findOne({ name: { $regex: `^${productName}$`, $options: 'i' } });
+        if (productData) {
+          if (productData.category === 'Academy') {
+            typesource.add('Academy');
+          } else if (productData.category === 'Health Hub') {
+            typesource.add('Hub');
+          }
+        } else {
+          results.push({ row, error: `Sản phẩm "${productName}" không tồn tại trong collection Product` });
+          continue;
+        }
+      }
+
+      // Bước 2: Tạo bản ghi ContactPortal mới
+      let idaca;
+      try {
+        idaca = await getNextIdaca();
+      } catch (error) {
+        results.push({ row, error: error.message });
+        continue;
+      }
+
+      const contact = new ContactPortal({
+        idaca: idaca,
+        namecusaca: row['Tên Khách Hàng'] || '',
+        emailcusaca: row['Email'] || '',
+        phonecusaca: row['Số Điện Thoại'] || '',
+        NguoiGT: row['Người Tạo'] || '',
+        Typesource: Array.from(typesource),
+        dateOfBirth: '',
+        gender: '',
+        address: '',
+      });
+
+      try {
+        await contact.save();
+      } catch (error) {
+        if (error.code === 11000) {
+          results.push({ row, error: `Trùng lặp idaca: ${idaca}` });
+          continue;
+        }
+        throw error;
+      }
+
+      // Bước 3: Tạo bản ghi HubPortal
+      for (const [productName, quantity] of Object.entries(productQuantities)) {
+        const product = await Product.findOne({ name: { $regex: `^${productName}$`, $options: 'i' } });
+        if (!product) continue;
+
+        const hubPortal = new HubPortal({
+          contactId: contact.idaca,
+          productId: product._id,
+          quantity: quantity,
+          paymentDate: row['Ngày Đặt'] ? moment(row['Ngày Đặt'], 'DD/MM/YYYY').format('DD/MM/YYYY') : '',
+          createdDate: row['Ngày Đặt'] ? moment(row['Ngày Đặt'], 'DD/MM/YYYY').toDate() : new Date(),
+        });
+        await hubPortal.save();
+
+        // Bước 4: Tạo bản ghi Pipeline_Portal
+        const pipelinePortal = new PipelinePortal({
+          contactId: contact.idaca,
+          productId: product._id,
+          k: `K${row['Mã Đơn Hàng']}`,
+          createdDate: row['Ngày Đặt'] ? moment(row['Ngày Đặt'], 'DD/MM/YYYY').toDate() : new Date(),
+          updatedDate: row['Ngày Đặt'] ? moment(row['Ngày Đặt'], 'DD/MM/YYYY').toDate() : new Date(),
+        });
+        await pipelinePortal.save();
+      }
+
+      results.push({ row, status: 'Thành công', idaca: contact.idaca });
+    }
+
+    // Xóa file tạm
+    await fs.promises.unlink(req.file.path).catch((err) => {
+      console.error(`Lỗi khi xóa file tạm ${req.file.path}: ${err.message}`);
+    });
+
+    return res.status(200).json({ message: 'Nhập dữ liệu thành công', results });
+  } catch (error) {
+    if (req.file?.path) {
+      await fs.promises.unlink(req.file.path).catch((err) => {
+        console.error(`Lỗi khi xóa file tạm ${req.file.path}: ${err.message}`);
+      });
+    }
+    console.error('Lỗi khi nhập dữ liệu:', error);
+    return res.status(500).json({ error: 'Lỗi server khi nhập dữ liệu', details: error.message });
+  }
+});
+
+
+
+
+app.post('/api/import-excel', upload.single('file'), async (req, res) => {
+  try {
+    // Đọc file Excel
+    const workbook = XLSX.readFile(req.file.path);
+    const sheetName = workbook.SheetNames[0];
+    const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+    // Mảng lưu các STT không hợp lệ và STT thành công
+    const notFoundSTTs = [];
+    const successSTTs = [];
+
+    for (const row of data) {
+      // Ánh xạ cột Excel với schema
+      const contactData = {
+        idaca: row['STT']?.toString() || 'N/A', // Lưu STT để ghi log
+        namecusaca: row['Họ tên KH'] || '',
+        Typesource: row['Nguồn KH'] ? [row['Nguồn KH']] : [],
+        dateOfBirth: row['Ngày sinh'] || '',
+        gender: row['Giới tính'] || '',
+        phonecusaca: row['SĐT']?.toString().replace(/[^0-9]/g, '').trim() || '', // Loại bỏ ký tự không phải số
+        emailcusaca: row['Email']?.toString().trim() || '', // Lưu email nhưng không dùng
+        address: row['Địa chỉ'] || '',
+      };
+
+      // Kiểm tra nếu phonecusaca rỗng
+      if (!contactData.phonecusaca) {
+        notFoundSTTs.push({
+          STT: contactData.idaca,
+          reason: 'Số điện thoại trống',
+        });
+        continue;
+      }
+
+      // Tìm Contact theo phonecusaca
+      const contacts = await Contact.find({ phonecusaca: contactData.phonecusaca });
+
+      let existingContact = null;
+      if (contacts.length > 1) {
+        // Có nhiều bản ghi trùng lặp, ghi log lỗi và bỏ qua
+        notFoundSTTs.push({
+          STT: contactData.idaca,
+          reason: `Tìm thấy ${contacts.length} bản ghi Contact trùng số điện thoại (${contactData.phonecusaca})`,
+        });
+        continue;
+      } else if (contacts.length === 1) {
+        // Tìm thấy chính xác một bản ghi
+        existingContact = contacts[0];
+      } else {
+        // Không tìm thấy Contact
+        notFoundSTTs.push({
+          STT: contactData.idaca,
+          reason: `Không tìm thấy Contact với số điện thoại (${contactData.phonecusaca})`,
+        });
+        continue;
+      }
+
+      // Tìm sản phẩm theo productCode
+      const productCode = row['Mã dịch vụ'];
+      let existingProduct = await Product.findOne({ productCode });
+
+      if (!existingProduct) {
+        // Không tìm thấy Product, ghi log STT
+        notFoundSTTs.push({
+          STT: contactData.idaca,
+          reason: `Không tìm thấy Product với productCode: ${productCode}`,
+        });
+        continue;
+      }
+
+      // Tạo bản ghi HubPortal
+      const hubPortalData = {
+        contactId: existingContact.idaca, // Sử dụng idaca của Contact thay vì _id
+        productId: existingProduct._id, // Lấy _id từ Product
+        quantity: row['Số lượng'] || 1,
+        paymentDate: row['Ngày thanh toán'] || '',
+      };
+
+      const newHubPortal = new HubPortal(hubPortalData);
+      await newHubPortal.save();
+
+      // Cập nhật Typesource trong Contact
+      if (!existingContact.Typesource.includes('Hub')) {
+        await Contact.updateOne(
+          { _id: existingContact._id },
+          { $addToSet: { Typesource: 'Hub' } }
+        );
+      }
+
+      // Ghi log STT thành công
+      successSTTs.push(contactData.idaca);
+    }
+
+    // Xóa file tạm
+    const fs = require('fs');
+    fs.unlinkSync(req.file.path);
+
+    // Trả về kết quả
+    const response = {
+      message: 'Nhập dữ liệu từ Excel hoàn tất.',
+      successSTTs,
+      notFoundSTTs,
+    };
+    console.log('Kết quả xử lý:', response);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error('Lỗi khi nhập dữ liệu:', error);
+    res.status(500).json({ message: 'Lỗi khi nhập dữ liệu', error: error.message });
+  }
+});
+
+
+app.post('/api/import-excel-by-email', upload.single('file'), async (req, res) => {
+  try {
+    // Đọc file Excel
+    const workbook = XLSX.readFile(req.file.path);
+    const sheetName = workbook.SheetNames[0];
+    const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+    // Mảng lưu các STT không hợp lệ và STT thành công
+    const notFoundSTTs = [];
+    const successSTTs = [];
+
+    for (const row of data) {
+      // Ánh xạ cột Excel với schema
+      const contactData = {
+        idaca: row['STT']?.toString() || 'N/A', // Lưu STT để ghi log
+        namecusaca: row['Họ tên KH'] || '',
+        Typesource: row['Nguồn KH'] ? [row['Nguồn KH']] : [],
+        dateOfBirth: row['Ngày sinh'] || '',
+        gender: row['Giới tính'] || '',
+        phonecusaca: row['SĐT']?.toString().replace(/[^0-9]/g, '').trim() || '', // Lưu nhưng không dùng
+        emailcusaca: row['Email']?.toString().trim() || '', // Dùng để tìm Contact
+        address: row['Địa chỉ'] || '',
+      };
+
+      // Kiểm tra nếu emailcusaca rỗng
+      if (!contactData.emailcusaca) {
+        notFoundSTTs.push({
+          STT: contactData.idaca,
+          reason: 'Email trống',
+        });
+        continue;
+      }
+
+      // Kiểm tra định dạng email
+      if (!/.+\@.+\..+/.test(contactData.emailcusaca)) {
+        notFoundSTTs.push({
+          STT: contactData.idaca,
+          reason: `Email không hợp lệ: ${contactData.emailcusaca}`,
+        });
+        continue;
+      }
+
+      // Tìm Contact theo emailcusaca
+      const contacts = await Contact.find({ emailcusaca: contactData.emailcusaca });
+
+      let existingContact = null;
+      if (contacts.length > 1) {
+        // Có nhiều bản ghi trùng lặp, ghi log lỗi và bỏ qua
+        notFoundSTTs.push({
+          STT: contactData.idaca,
+          reason: `Tìm thấy ${contacts.length} bản ghi Contact trùng email (${contactData.emailcusaca})`,
+        });
+        continue;
+      } else if (contacts.length === 1) {
+        // Tìm thấy chính xác một bản ghi
+        existingContact = contacts[0];
+      } else {
+        // Không tìm thấy Contact
+        notFoundSTTs.push({
+          STT: contactData.idaca,
+          reason: `Không tìm thấy Contact với email (${contactData.emailcusaca})`,
+        });
+        continue;
+      }
+
+      // Tìm sản phẩm theo productCode
+      const productCode = row['Mã dịch vụ'];
+      let existingProduct = await Product.findOne({ productCode });
+
+      if (!existingProduct) {
+        // Không tìm thấy Product, ghi log STT
+        notFoundSTTs.push({
+          STT: contactData.idaca,
+          reason: `Không tìm thấy Product với productCode: ${productCode}`,
+        });
+        continue;
+      }
+
+      // Tạo bản ghi HubPortal
+      const hubPortalData = {
+        contactId: existingContact.idaca, // Sử dụng idaca của Contact
+        productId: existingProduct._id, // Lấy _id từ Product
+        quantity: row['Số lượng'] || 1,
+        paymentDate: row['Ngày thanh toán'] || '',
+      };
+
+      const newHubPortal = new HubPortal(hubPortalData);
+      await newHubPortal.save();
+
+      // Cập nhật Typesource trong Contact
+      if (!existingContact.Typesource.includes('Hub')) {
+        await Contact.updateOne(
+          { _id: existingContact._id },
+          { $addToSet: { Typesource: 'Hub' } }
+        );
+      }
+
+      // Ghi log STT thành công
+      successSTTs.push(contactData.idaca);
+    }
+
+    // Xóa file tạm
+    const fs = require('fs');
+    fs.unlinkSync(req.file.path);
+
+    // Trả về kết quả
+    const response = {
+      message: 'Nhập dữ liệu từ Excel hoàn tất (dựa trên email).',
+      successSTTs,
+      notFoundSTTs,
+    };
+    console.log('Kết quả xử lý:', response);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error('Lỗi khi nhập dữ liệu:', error);
+    res.status(500).json({ message: 'Lỗi khi nhập dữ liệu', error: error.message });
+  }
+});
+
+app.post('/v1/api/hub/import', upload.single('file'), async (req, res) => {
+  try {
+    const file = req.file;
+    if (!file) {
+      return res.status(400).json({ message: 'Vui lòng upload file.' });
+    }
+
+    if (!file.originalname.toLowerCase().endsWith('.xlsx') && !file.originalname.toLowerCase().endsWith('.xls')) {
+      await fs.promises.unlink(file.path);
+      return res.status(400).json({ message: 'Định dạng file không được hỗ trợ. Vui lòng upload file Excel.' });
+    }
+
+    const workbook = XLSX.readFile(file.path);
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+    const data = XLSX.utils.sheet_to_json(worksheet);
+
+    const skippedRows = [];
+
+    for (const row of data) {
+      const stt = row['STT']?.toString().trim();
+      const productCode = row['Mã dịch vụ']?.toString().trim();
+
+      if (!stt || !productCode) {
+        skippedRows.push({ stt: stt || 'Trống', reason: 'Thiếu STT hoặc Mã dịch vụ' });
+        continue;
+      }
+
+      const contact = await ContactPortal.findOne({ idaca: stt });
+      if (!contact) {
+        skippedRows.push({ stt, reason: `Không tìm thấy Contact với STT (idaca) = ${stt}` });
+        continue;
+      }
+
+      const product = await Product.findOne({ productCode: productCode });
+      if (!product) {
+        skippedRows.push({ stt, reason: `Không tìm thấy Product với Mã dịch vụ = ${productCode}` });
+        continue;
+      }
+
+      const newHubEntry = new HubPortal({
+        contactId: contact.idaca,
+        productId: product._id,
+        quantity: row['Số lượng'] || 1,
+        paymentDate: row['Ngày thanh toán'] || new Date(),
+      });
+
+      try {
+        await newHubEntry.save();
+      } catch (error) {
+        skippedRows.push({ stt, reason: `Lỗi khi lưu vào DB: ${error.message}` });
+      }
+    }
+
+    await fs.promises.unlink(file.path);
+
+    const totalRows = data.length;
+    const skipped = skippedRows.length;
+    const imported = totalRows - skipped;
+
+    if (skipped > 0) {
+      console.log('Các dòng đã bị bỏ qua:', skippedRows);
+    }
+
+    res.status(200).json({
+      message: 'Import hoàn tất',
+      totalRows,
+      importedRows: imported,
+      skippedRows: skipped,
+      skippedDetails: skipped > 0 ? skippedRows : 'Không có dòng nào bị bỏ qua',
+    });
+
+  } catch (error) {
+    if (req.file) {
+      await fs.promises.unlink(req.file.path).catch(() => { });
+    }
+    res.status(500).json({ message: 'Lỗi server khi import file', error: error.message });
+  }
+});
+
+
+
+
+
 
 // Routes API
 app.get("/api/saleKit", async (req, res) => {
@@ -296,6 +818,69 @@ app.post("/api/saleKit", upload.single("file"), async (req, res) => {
 //     res.status(500).json({ message: 'Error importing Excel file', error: err.message });
 //   }
 // });
+// ============================================================
+// PUBLIC API — Gửi email đăng ký tư vấn lót giày chỉnh hình
+// Không cần auth token, dùng cho landing page /test
+// ============================================================
+const nodemailer = require('nodemailer');
+
+const landingMailTransporter = nodemailer.createTransport({
+  host: 'smtp.office365.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: 'tech@khitamtherapy.com',
+    pass: 'gHyK2h$xU3VL',
+  },
+  tls: { ciphers: 'SSLv3' },
+});
+
+app.post('/api/public/landing-email', async (req, res) => {
+  const { name, phone, note } = req.body;
+
+  if (!name || !phone) {
+    return res.status(400).json({ message: 'Thiếu họ tên hoặc số điện thoại.' });
+  }
+
+  const htmlBody = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+      <div style="background: linear-gradient(135deg,#0a5c36,#1a8a52); padding: 24px 28px;">
+        <h2 style="color:#fff; margin:0; font-size:1.3rem;">🦶 Đăng Ký Tư Vấn Lót Giày Chỉnh Hình</h2>
+      </div>
+      <div style="padding: 28px;">
+        <table style="width:100%; border-collapse: collapse;">
+          <tr><td style="padding:10px 0; color:#555; width:140px; font-weight:600;">Họ và tên:</td><td style="padding:10px 0; color:#222; font-weight:700;">${name}</td></tr>
+          <tr style="background:#f8fbf9;"><td style="padding:10px 0; color:#555; font-weight:600;">Số điện thoại:</td><td style="padding:10px 0; color:#222; font-weight:700;">${phone}</td></tr>
+          <tr><td style="padding:10px 0; color:#555; font-weight:600;">Vấn đề bàn chân:</td><td style="padding:10px 0; color:#222;">${note || 'Không có ghi chú'}</td></tr>
+          <tr style="background:#f8fbf9;"><td style="padding:10px 0; color:#555; font-weight:600;">Thời gian:</td><td style="padding:10px 0; color:#222;">${new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}</td></tr>
+        </table>
+        <div style="margin-top:24px; padding:16px; background:#e8f5ee; border-radius:8px; font-size:0.9rem; color:#0a5c36;">
+          ⚡ Khách hàng đăng ký qua landing page lót giày chỉnh hình. Vui lòng liên hệ lại trong vòng <strong>24 giờ</strong>.
+        </div>
+      </div>
+      <div style="background:#f5f5f5; padding:12px 28px; font-size:0.8rem; color:#999; text-align:center;">
+        Khí Tâm Therapy — Hotline: 1900 292989
+      </div>
+    </div>
+  `;
+
+  try {
+    await landingMailTransporter.sendMail({
+      from: '"Khí Tâm Landing Page" <tech@khitamtherapy.com>',
+      to:   'tech@khitamtherapy.com',
+      cc:   'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, khitamtherapytech@gmail.com',
+      subject: `[Lót Giày Chỉnh Hình] Đăng ký tư vấn — ${name} — ${phone}`,
+      html: htmlBody,
+    });
+
+    console.log(`✅ Landing email sent: ${name} — ${phone}`);
+    return res.status(200).json({ message: 'Gửi email thành công!' });
+  } catch (err) {
+    console.error('❌ Landing email error:', err.message);
+    return res.status(500).json({ message: 'Lỗi gửi email.', error: err.message });
+  }
+});
+
 app.use((req, res, next) => {
   //console.log(`Request URL: ${req.url}`);
   next();
@@ -344,3 +929,7 @@ app.use((error, req, res, next) => {
 
 
 module.exports = app;
+
+// API Import HubPortal trực tiếp trong app.js
+
+

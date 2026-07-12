@@ -15,7 +15,7 @@ const actionLogSchema = new Schema(
     },
     action: {
       type: String,
-      enum: ["CREATE", "UPDATE", "DELETE"],
+      enum: ["CREATE", "UPDATE", "DELETE", "UPDATE_INSTALLMENT"],
       required: true,
     },
     oldValue: {

@@ -18,10 +18,19 @@ const productSchema = new mongoose.Schema({
     enum: ['available', 'unavailable'],
     default: 'available',
   },
+  image: { // New image field
+    type: String,
+    default: '', // Optional: default to empty string if no image is provided
+  },
   productCode: {
     type: String,
     required: false,
     unique: true,
+  },
+  TaxCode: {
+    type: String,
+    required: false,
+   
   },
   vouchers: [
     {

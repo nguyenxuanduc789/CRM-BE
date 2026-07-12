@@ -21,9 +21,14 @@ const pinelineRouter = require("./pineline/pinelineRouter");
 const voucherRouter = require("./voucher/voucherRouter");
 const workStreamRouter = require("./workstream/workstreamRoutes");
 const affiliateRouter = require("./affiliate/affiliateRouter");
+const orderRouter = require("./ouder/orderRoutes");
 const kpiRouter = require("./KPI/KPIRouter");
-
+const PortalRouter = require("./portal/portalRouter");
+const EliteMaster = require("./eliteMaste/eliteMasterRouter");
+const EmailRouter = require("./emailRoutes/emailRoutes");
+const LMSRouter = require("./lms");
 router.use("/api/v1/contact", contactRoutes);
+router.use("/api/v1/order", orderRouter);
 router.use("/api/v1/admin", adminRoutes);
 router.use("/api/v1/chamcong", timekeepingRoutes);
 router.use("/api/v1/products", productRoutes);
@@ -32,8 +37,15 @@ router.use("/api/v1/workstream", workStreamRouter);
 router.use("/api/v1/aff", affiliateRouter);
 router.use("/api/v1/voucher", voucherRouter);
 router.use("/api/v1/kpi", kpiRouter);
+router.use("/api/v1/portal", PortalRouter);
+
+router.use("/api/v1/elite-mastermind", EliteMaster); 
+router.use("/api/v1/emailmaketing", EmailRouter);       
 router.use("/api/v1", require("./user"));
 router.use("/api/v1", require("./auth"));
+
+// LMS Routes (Learning Management System)
+router.use("/api/lms", LMSRouter);
 
 // Xử lý lỗi tổng quát
 // router.use((err, req, res, next) => {

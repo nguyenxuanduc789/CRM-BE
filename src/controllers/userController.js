@@ -3,7 +3,7 @@ const User = require("../models/user.model");
 const Team = require("../models/team.model");
 const Role = require("../models/role.model");
 const mongoose = require('mongoose');
-
+const Affiliate = require('../models/user.affiliate.model');
 // Function xử lý tạo tài khoản người dùng
 const createAccount = async (req, res) => {
   try {
@@ -146,42 +146,154 @@ const createAccount = async (req, res) => {
   }
 };
 const addAffiliateToProfile = async (req, res) => {
-  const { affiliateCode } = req.body;
-  const { userId } = req.params; // Lấy userId từ URL params
-
-  if (!affiliateCode) {
-    return res.status(400).json({ message: "Thiếu mã giới thiệu" });
+  const { affiliateId } = req.body;
+  const { userId } = req.params;
+  
+  console.log("Processing userId:", userId);
+  console.log("Processing affiliateId:", affiliateId);
+  
+  if (!affiliateId) {
+    return res.status(400).json({ message: "Thiếu mã Affiliate ID" });
   }
-
+  
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     return res.status(400).json({ message: "ID người dùng không hợp lệ" });
   }
-
+  
   try {
+    // Tìm user hiện tại
     const currentUser = await User.findById(userId);
     if (!currentUser) {
       return res.status(404).json({ message: "Không tìm thấy người dùng" });
     }
-
-    // const currentUserRole = await Role.findById(currentUser.role);
-    // if (!currentUserRole || currentUserRole.code !== "customer") {
-    //   return res.status(403).json({ message: "Chỉ khách hàng mới có thể thêm mã giới thiệu" });
-    // }
-
-    if (currentUser.aff.includes(Number(affiliateCode))) {
-      return res.status(400).json({ message: "Bạn đã thêm mã giới thiệu này rồi" });
+    
+    // Khởi tạo mảng managedAffiliateIds nếu chưa có
+    if (!currentUser.managedAffiliateIds) {
+      currentUser.managedAffiliateIds = [];
     }
-
-    currentUser.aff.push(Number(affiliateCode));
-    await currentUser.save();
-
-    return res.status(200).json({ message: "Thêm mã giới thiệu thành công", user: currentUser });
+    
+    // Kiểm tra xem user này đã quản lý affiliate này chưa
+    if (currentUser.managedAffiliateIds.includes(affiliateId)) {
+      return res.status(400).json({ message: "Bạn đã thêm mã Affiliate này rồi" });
+    }
+    
+    // Kiểm tra xem affiliate có tồn tại không
+    const affiliate = await Affiliate.findOne({ affiliateId });
+    if (!affiliate) {
+      return res.status(404).json({ message: "Mã Affiliate ID không tồn tại" });
+    }
+    
+    // Kiểm tra xem affiliate đã được quản lý bởi user khác chưa
+    if (affiliate.managedBy && !affiliate.managedBy.equals(currentUser._id)) {
+      return res.status(403).json({ 
+        message: "Mã Affiliate này đã được quản lý bởi người dùng khác" 
+      });
+    }
+    
+    // Kiểm tra xem có user nào khác đã có affiliateId này trong managedAffiliateIds không
+    const conflictUser = await User.findOne({
+      _id: { $ne: currentUser._id },
+      managedAffiliateIds: { $in: [affiliateId] }
+    });
+    
+    let shouldRemoveFromDuc = false;
+    
+    if (conflictUser) {
+      // Nếu conflictUser là "Đức" và user hiện tại không phải là "Đức"
+      // thì cho phép chuyển affiliate từ Đức sang user hiện tại
+      if (conflictUser.email === "ducprokb1234@gmail.com" && 
+          currentUser.email !== "ducprokb1234@gmail.com") {
+        shouldRemoveFromDuc = true;
+        console.log(`Chuyển affiliate ${affiliateId} từ Đức sang user ${currentUser.email}`);
+      }
+      // Nếu user hiện tại là "Đức" thì cho phép (Đức có thể lấy lại affiliate)
+      else if (currentUser.email === "ducprokb1234@gmail.com") {
+        console.log(`Đức lấy lại affiliate ${affiliateId} từ user ${conflictUser.email}`);
+        // Sẽ xử lý remove khỏi conflictUser trong transaction
+      }
+      // Nếu cả hai đều không phải là "Đức" thì không cho phép
+      else {
+        return res.status(403).json({ 
+          message: "Mã Affiliate này đã được quản lý bởi người dùng khác trong hệ thống" 
+        });
+      }
+    }
+    
+    // Bắt đầu transaction để đảm bảo tính nhất quán
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    
+    try {
+      // Nếu cần xóa affiliate khỏi user khác (chuyển từ Đức hoặc user khác)
+      if (conflictUser) {
+        // Xóa affiliateId khỏi managedAffiliateIds của conflictUser
+        conflictUser.managedAffiliateIds = conflictUser.managedAffiliateIds.filter(id => id !== affiliateId);
+        await conflictUser.save({ session });
+        console.log(`Đã xóa affiliate ${affiliateId} khỏi user ${conflictUser.email}`);
+      }
+      
+      // Cập nhật affiliate.managedBy
+      affiliate.managedBy = currentUser._id;
+      await affiliate.save({ session });
+      
+      // Thêm affiliateId vào managedAffiliateIds của user hiện tại
+      currentUser.managedAffiliateIds.push(affiliateId);
+      await currentUser.save({ session });
+      
+      // Commit transaction
+      await session.commitTransaction();
+      
+      return res.status(200).json({
+        message: conflictUser ? 
+          `Đã chuyển mã Affiliate từ ${conflictUser.email} sang ${currentUser.email}` : 
+          "Thêm mã Affiliate thành công",
+        user: {
+          _id: currentUser._id,
+          email: currentUser.email,
+          firstname: currentUser.firstname,
+          lastname: currentUser.lastname,
+          managedAffiliateIds: currentUser.managedAffiliateIds
+        },
+        affiliate: {
+          _id: affiliate._id,
+          name: affiliate.name,
+          affiliateId: affiliate.affiliateId,
+          managedBy: affiliate.managedBy
+        },
+        previousOwner: conflictUser ? {
+          _id: conflictUser._id,
+          email: conflictUser.email,
+          firstname: conflictUser.firstname,
+          lastname: conflictUser.lastname
+        } : null
+      });
+      
+    } catch (transactionError) {
+      // Rollback transaction nếu có lỗi
+      await session.abortTransaction();
+      throw transactionError;
+    } finally {
+      session.endSession();
+    }
+    
   } catch (error) {
-    console.error("Lỗi khi thêm mã giới thiệu:", error);
-    return res.status(500).json({ message: "Lỗi server khi thêm mã giới thiệu" });
+    console.error("Lỗi khi thêm mã Affiliate:", error);
+    
+    // Xử lý lỗi validation từ mongoose middleware
+    if (error.message && error.message.includes("đã được gán cho user khác")) {
+      return res.status(403).json({ message: error.message });
+    }
+    
+    if (error.message && error.message.includes("không tồn tại")) {
+      return res.status(404).json({ message: error.message });
+    }
+    
+    return res.status(500).json({ 
+      message: "Lỗi server khi thêm mã Affiliate",
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 };
-
 const getUserStatus = async (req, res) => {
   const { id } = req.params; // Lấy id từ tham số URL
 
@@ -224,32 +336,44 @@ const createUser = async (req, res) => {
       employeeCode,
       profileDetails,
       team,
+      role,
+      managedBy
     } = req.body;
 
-    // Kiểm tra các trường bắt buộc
+    // ✅ Validate
     if (!email || !firstname || !lastname || !password) {
       return res.status(400).json({
-        message:
-          "Missing required fields: email, firstname, lastname, password.",
+        message: "Missing required fields: email, firstname, lastname, password.",
       });
     }
 
-    // Kiểm tra xem email đã tồn tại chưa
+    // ✅ Check email tồn tại
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Email already in use." });
     }
 
-    // Mã hóa mật khẩu
+    // ✅ Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Tạo tài khoản user
+    // ✅ DEFAULT VALUES
+    const DEFAULT_ROLE = "69df101f29f96a3dbd215a19";
+    const DEFAULT_MANAGER = "6778b859f7d1852940fd9d7c";
+
+    // ✅ Create user
     const user = new User({
       email,
       firstname,
       lastname,
-      password: hashedPassword, // Lưu mật khẩu mã hóa
-      status: status || "pending approval", // Mặc định là "pending approval" nếu không truyền
+      password: hashedPassword,
+
+      // 🔥 Ưu tiên FE truyền, không có thì dùng default
+      role: role || DEFAULT_ROLE,
+      managedBy: managedBy || DEFAULT_MANAGER,
+
+      // 🔥 status mặc định active
+      status: status || "active",
+
       region,
       province,
       employeeCode,
@@ -257,7 +381,6 @@ const createUser = async (req, res) => {
       team,
     });
 
-    // Lưu vào database
     await user.save();
 
     res.status(201).json({
@@ -267,11 +390,12 @@ const createUser = async (req, res) => {
         email: user.email,
         firstname: user.firstname,
         lastname: user.lastname,
+        role: user.role,
+        managedBy: user.managedBy,
         status: user.status,
-        region: user.region,
-        province: user.province,
       },
     });
+
   } catch (error) {
     res.status(500).json({
       message: "Error creating user",
