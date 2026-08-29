@@ -68,7 +68,7 @@ const sendEmailToContact = async (req, res) => {
 
     const textVersion = htmlToText(personalizedHtml, { wordwrap: 130 });
 
-    let finalCc = ['nguyenthithanhdiem2806@gmail.com', 'khitamtherapytech@gmail.com'];
+    let finalCc = ['nguyenthithanhdiem2806@gmail.com', 'khitamtherapytech@gmail.com', 'khitamacademy@gmail.com', 'truongxuan.fengshuix@gmail.com'];
     if (Array.isArray(cc) && cc.length > 0) {
       finalCc.push(...cc);
     } else if (typeof cc === 'string') {

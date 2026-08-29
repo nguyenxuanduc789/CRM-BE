@@ -91,7 +91,7 @@ const sendReminder = async ({ email, name, courseName, amount, expectedDate, ins
     const info = await transporter.sendMail({
       from: '"Học Viện Khí Tâm Trị Liệu" <tech@khitamtherapy.com>',
       to: email,
-      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com',
+      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com, khitamacademy@gmail.com, truongxuan.fengshuix@gmail.com',
       subject,
       html,
     });

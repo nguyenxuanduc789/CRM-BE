@@ -61,7 +61,7 @@ const sendReminderToOne = async ({ name, email, dueDateStr }) => {
             from: '"Học Viện Khí Tâm Trị Liệu" <tech@khitamtherapy.com>',
             to: email,
             subject,
-            cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com',
+            cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com, khitamacademy@gmail.com, truongxuan.fengshuix@gmail.com',
             html,
         });
 
