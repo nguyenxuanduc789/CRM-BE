@@ -2101,9 +2101,9 @@ ________________________________________________________________________________
 
 Nếu Quý khách cần bất kỳ hỗ trợ nào, vui lòng liên hệ ngay qua các kênh sau:
 - Ban Điều hành:
-  Nhà sáng lập Master Sridevi Tố Hải: nguyenthithanhdiem2806@gmail.com
+  Nhà sáng lập Master Sridevi Tố Hải: yogathienwithme@gmail.com
   CEO Mrs Thanh Yên: thanhyen.bui@khitamtherapy.com
-- Tư vấn viên: Ms Nguyễn Thị Thanh Diễm (+84 937 497 390) - consultant.training@khitamtherapy.com
+- Chăm sóc khách hàng: Hotline 0349635168 - consultant.training@khitamtherapy.com
 - Team hỗ trợ kỹ thuật & Đơn hàng: tech@khitamtherapy.com
   Mr. Trung Tín: (+84) 913 306 193
   Mr. Nguyễn Xuân Đức: (+84) 70 881 7979
