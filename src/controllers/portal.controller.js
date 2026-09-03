@@ -19,7 +19,7 @@ const isHubProduct = (category) => {
 
 exports.getPortalsByContactDate = async (req, res) => {
   try {
-    const { userId, startDate, endDate, page = 1, limit = 20, source, search } = req.query;
+    const { userId, startDate, endDate, page = 1, limit = 20, source, search, productSearch, kMin, kMax } = req.query;
 
     // Kiểm tra đầu vào
     if (!userId || !startDate || !endDate) {
@@ -45,6 +45,17 @@ exports.getPortalsByContactDate = async (req, res) => {
       return res.status(400).json({ message: 'User không có vai trò được gán' });
     }
 
+    
+    const extractKNumber = (orderId) => {
+      if (!orderId || orderId === 'N/A') return null;
+      const str = String(orderId).trim();
+      let match = str.match(/^K\s*(\d+)/i);
+      if (match) return parseInt(match[1], 10);
+      match = str.match(/^(\d+)$/);
+      if (match) return parseInt(match[1], 10);
+      return null;
+    };
+
     let contactIds = [];
     let hubPortals = [];
     let pipelinePortals = [];
@@ -67,7 +78,7 @@ exports.getPortalsByContactDate = async (req, res) => {
     }
     
     // Tất cả role đều xem được tất cả dữ liệu
-    contacts = await Contact.find(contactQuery).select('idaca namecusaca NguoiGT emailcusaca phonecusaca createdAt Typesource');
+    contacts = await Contact.find(contactQuery).select('idaca namecusaca NguoiGT emailcusaca phonecusaca createdAt Typesource').lean();
     contactIds = contacts.map(contact => contact.idaca);
 
     hubPortals = await HubPortal.find({
@@ -78,8 +89,8 @@ exports.getPortalsByContactDate = async (req, res) => {
         model: 'Product',
         select: 'name price category productCode',
       })
-      .skip((page - 1) * limit)
-      .limit(Number(limit));
+      
+      ;
 
     pipelinePortals = await PipelinePortal.find({
       contactId: { $in: contactIds },
@@ -89,8 +100,8 @@ exports.getPortalsByContactDate = async (req, res) => {
         model: 'Product',
         select: 'name price category productCode',
       })
-      .skip((page - 1) * limit)
-      .limit(Number(limit));
+      
+      ;
 
     // Kiểm tra contacts
     if (!contacts || contacts.length === 0) {
@@ -189,10 +200,49 @@ exports.getPortalsByContactDate = async (req, res) => {
       console.log('PipelinePortals:', pipelinePortals.map(p => ({ contactId: p.contactId, productId: p.productId?._id })));
     }
 
+    
+    // Filter theo productSearch, kMin, kMax
+    if (productSearch && productSearch.trim()) {
+      const keywords = productSearch.trim().toLowerCase().split(/\s+/);
+      result = result.map(item => {
+        if (item.products && item.products.length > 0) {
+          const matchedProducts = item.products.filter(p => {
+            const searchString = `${p.productName || ''} ${p.orderId || ''}`.toLowerCase();
+            return keywords.every(kw => searchString.includes(kw));
+          });
+          if (matchedProducts.length === 0) return null;
+          return { ...item, products: matchedProducts };
+        }
+        return null;
+      }).filter(Boolean);
+    }
+    
+    if (kMin || kMax) {
+      const min = kMin ? Number(kMin) : null;
+      const max = kMax ? Number(kMax) : null;
+      result = result.map(item => {
+        if (item.products && item.products.length > 0) {
+          const matchedProducts = item.products.filter(p => {
+            const kNum = extractKNumber(p.orderId);
+            if (kNum === null) return false;
+            if (min !== null && kNum < min) return false;
+            if (max !== null && kNum > max) return false;
+            return true;
+          });
+          if (matchedProducts.length === 0) return null;
+          return { ...item, products: matchedProducts };
+        }
+        return null;
+      }).filter(Boolean);
+    }
+
+    const total = result.length;
+    result = result.slice((Number(page) - 1) * Number(limit), Number(page) * Number(limit));
+
     res.status(200).json({
       message: 'Lấy danh sách Portal thành công',
       data: result,
-      total: result.length,
+      total: total,
       page: Number(page),
       limit: Number(limit),
     });

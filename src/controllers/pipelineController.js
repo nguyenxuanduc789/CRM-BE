@@ -1,4 +1,7 @@
 const Pipeline = require("../models/pineline.model");
+const ContactPortal = require("../models/contactprotal.model");
+const PipelinePortal = require("../models/pipeline_portal.model");
+const HubPortal = require("../models/HubPortal.model");
 const InstallmentPlan = require("../models/InstallmentPlan.model");
 const Contact = require("../models/contact.model");
 const User = require("../models/user.model");
@@ -94,6 +97,51 @@ exports.updatePipelineStatus = async (req, res) => {
     });
 
     if (status === "Completed") {
+      try {
+        const contact = pipeline.contact;
+        if (contact && pipeline.products && pipeline.products.length > 0) {
+          let contactPortal = null;
+          if (contact.email) contactPortal = await ContactPortal.findOne({ emailcusaca: contact.email });
+          if (!contactPortal && contact.phone) contactPortal = await ContactPortal.findOne({ phonecusaca: contact.phone });
+
+          if (!contactPortal) {
+            const lastContact = await ContactPortal.findOne().sort({ createdAt: -1 });
+            // Using timestamp as fallback if maxIdaca logic is too heavy for API request
+            const newIdaca = lastContact && lastContact.idaca && !isNaN(parseInt(lastContact.idaca)) ? (parseInt(lastContact.idaca) + 1).toString() : Date.now().toString();
+
+            contactPortal = new ContactPortal({
+              idaca: newIdaca,
+              namecusaca: contact.name || "Unknown",
+              phonecusaca: contact.phone || "",
+              emailcusaca: contact.email || "",
+            });
+            await contactPortal.save();
+          }
+
+          for (const product of pipeline.products) {
+            const cat = product.category;
+            let categoryName = "";
+            if (Array.isArray(cat)) categoryName = cat.map(c => typeof c === "object" ? c.name : c)[0];
+            else if (typeof cat === "object") categoryName = cat.name;
+            else categoryName = cat;
+            
+            if (categoryName === "Academy") {
+              const exists = await PipelinePortal.findOne({ contactId: contactPortal.idaca, productId: product._id, k: pipeline.orderCode || pipeline._id.toString() });
+              if (!exists) {
+                await PipelinePortal.create({ contactId: contactPortal.idaca, productId: product._id, k: pipeline.orderCode || pipeline._id.toString() });
+              }
+            } else if (categoryName === "Health Hub") {
+              const exists = await HubPortal.findOne({ contactId: contactPortal.idaca, productId: product._id });
+              if (!exists) {
+                await HubPortal.create({ contactId: contactPortal.idaca, productId: product._id, quantity: 1, paymentDate: pipeline.updatedAt || Date.now() });
+              }
+            }
+          }
+        }
+      } catch (err) {
+        console.error("Lỗi đồng bộ portal:", err);
+      }
+
       const contactEmail = pipeline.contact?.email;
       const orderId = pipeline.orderCode;
       const customerName = pipeline.contact?.name || "Quý khách hàng";
