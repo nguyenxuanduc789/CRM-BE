@@ -253,3 +253,33 @@ exports.getPortalsByContactDate = async (req, res) => {
 };
 
 module.exports = exports;
+exports.updatePortalStatus = async (req, res) => {
+  try {
+    const { id, source, status, graduationStatus } = req.body;
+    if (!id || !source) {
+      return res.status(400).json({ message: 'Thiếu id hoặc source' });
+    }
+    
+    let updated;
+    const updateFields = {};
+    if (status !== undefined) updateFields.status = status;
+    if (graduationStatus !== undefined) updateFields.graduationStatus = graduationStatus;
+
+    if (source === 'AcademyPortal') {
+      const PipelinePortal = require('../models/pipeline_portal.model');
+      updated = await PipelinePortal.findByIdAndUpdate(id, { $set: updateFields }, { new: true });
+    } else if (source === 'HubPortal') {
+      const HubPortal = require('../models/HubPortal.model');
+      updated = await HubPortal.findByIdAndUpdate(id, { $set: updateFields }, { new: true });
+    }
+
+    if (!updated) {
+      return res.status(404).json({ message: 'Không tìm thấy dữ liệu' });
+    }
+
+    return res.status(200).json({ message: 'Cập nhật thành công', data: updated });
+  } catch (error) {
+    console.error('Lỗi updatePortalStatus:', error);
+    return res.status(500).json({ message: 'Lỗi máy chủ' });
+  }
+};
