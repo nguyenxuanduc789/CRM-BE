@@ -1,6 +1,8 @@
 
 const express = require("express");
 const router = express.Router();
+const ExportController = require("../../controllers/export.controller");
+router.get("/export-200h-300h", ExportController.export200h300h);
 const {
   createPipeline,
   getPipelinesrole,

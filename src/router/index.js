@@ -27,6 +27,7 @@ const PortalRouter = require("./portal/portalRouter");
 const EliteMaster = require("./eliteMaste/eliteMasterRouter");
 const EmailRouter = require("./emailRoutes/emailRoutes");
 const LMSRouter = require("./lms");
+const rishikeshRouter = require("./rishikesh/rishikeshRouter");
 router.use("/api/v1/contact", contactRoutes);
 router.use("/api/v1/order", orderRouter);
 router.use("/api/v1/admin", adminRoutes);
@@ -38,6 +39,7 @@ router.use("/api/v1/aff", affiliateRouter);
 router.use("/api/v1/voucher", voucherRouter);
 router.use("/api/v1/kpi", kpiRouter);
 router.use("/api/v1/portal", PortalRouter);
+router.use("/api/v1/rishikesh", rishikeshRouter);
 
 router.use("/api/v1/elite-mastermind", EliteMaster); 
 router.use("/api/v1/emailmaketing", EmailRouter);       
