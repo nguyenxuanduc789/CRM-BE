@@ -1,3 +1,4 @@
+const { cacheMiddleware, clearCache } = require("../../middlewares/redisCache");
 
 const express = require("express");
 const router = express.Router();
