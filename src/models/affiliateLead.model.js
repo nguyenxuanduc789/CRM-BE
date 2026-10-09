@@ -6,6 +6,7 @@ const affiliateLeadSchema = new mongoose.Schema(
     email: { type: String, required: true },
     phone: { type: String, default: "" },
     affiliateCode: { type: String, required: true },
+    affiliateName: { type: String, default: "" },
   },
   { timestamps: true }
 );
