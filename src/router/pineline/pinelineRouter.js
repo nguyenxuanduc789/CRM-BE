@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const ExportController = require("../../controllers/export.controller");
 router.get("/export-200h-300h", ExportController.export200h300h);
+router.get("/export-special", ExportController.exportSpecial);
 const {
   createPipeline,
   getPipelinesrole,
@@ -35,9 +36,9 @@ router.get("/pipelines/:createdBy", getPipelinesByCreator);
 router.get("/getallpipelines/", getAllPipelines);
 router.get("/teams/:userId/members", getTeamPineline);
 router.put("/pipelines/:id/status", updatePipelineStatus);
-router.get("/getpinelinerole", getPipelinesrole);
-router.get("/getpinelineroles", getPipelinesroles);
-router.get("/getpinelineroleaca", getPipelinesroleaca);
+router.get("/getpinelinerole", cacheMiddleware(300), getPipelinesrole);
+router.get("/getpinelineroles", cacheMiddleware(300), getPipelinesroles);
+router.get("/getpinelineroleaca", cacheMiddleware(300), getPipelinesroleaca);
 router.post("/add-note", addNoteToPipeline);
 router.put("/note/:noteId", editNote);
 router.delete("/note/:noteId", deleteNote);
