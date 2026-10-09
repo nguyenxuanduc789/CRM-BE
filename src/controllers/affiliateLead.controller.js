@@ -1,4 +1,4 @@
-﻿const AffiliateLead = require("../../models/affiliateLead.model");
+﻿const AffiliateLead = require("../models/affiliateLead.model");
 
 exports.createLead = async (req, res) => {
   try {
