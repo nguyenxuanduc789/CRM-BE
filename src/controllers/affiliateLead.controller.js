@@ -12,7 +12,7 @@ exports.createLead = async (req, res) => {
 
 exports.getLeads = async (req, res) => {
   try {
-    const leads = await AffiliateLead.find().sort({ createdAt: -1 });
+    const leads = await AffiliateLead.find().sort({ createdAt: -1 }).lean();
     res.status(200).json({ success: true, leads });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
