@@ -64,10 +64,71 @@ exports.createLead = async (req, res) => {
   }
 };
 
+const AffiliateOrder = require("../models/affiliateOrder.model");
+
 exports.getLeads = async (req, res) => {
   try {
     const leads = await AffiliateLead.find().sort({ createdAt: -1 }).lean();
     res.status(200).json({ success: true, leads });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// Lưu / Đồng bộ đơn hàng từ Đắc Sư
+exports.syncOrder = async (req, res) => {
+  try {
+    const {
+      orderId,
+      customerName,
+      customerEmail,
+      productCode,
+      orderAmount,
+      orderCurrency,
+      commissionAmount,
+      affiliateCode,
+      affiliateName,
+      status,
+      orderCreatedAt,
+    } = req.body;
+
+    if (!orderId) {
+      return res.status(400).json({ success: false, message: "orderId is required" });
+    }
+
+    const order = await AffiliateOrder.findOneAndUpdate(
+      { orderId },
+      {
+        orderId,
+        customerName: customerName || "",
+        customerEmail: customerEmail || "",
+        productCode: productCode || "",
+        orderAmount: Number(orderAmount) || 0,
+        orderCurrency: orderCurrency || "VND",
+        commissionAmount: Number(commissionAmount) || 0,
+        affiliateCode: affiliateCode || "",
+        affiliateName: affiliateName || "",
+        status: status || "confirmed",
+        orderCreatedAt: orderCreatedAt ? new Date(orderCreatedAt) : new Date(),
+      },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
+
+    if (clearCache) {
+      clearCache("affiliate-orders");
+    }
+
+    res.status(200).json({ success: true, order });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// Lấy danh sách các đơn mua qua link Affiliate
+exports.getOrders = async (req, res) => {
+  try {
+    const orders = await AffiliateOrder.find().sort({ orderCreatedAt: -1, createdAt: -1 }).lean();
+    res.status(200).json({ success: true, orders });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
