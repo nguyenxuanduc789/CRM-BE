@@ -4,13 +4,15 @@ const router = express.Router();
 const portalController = require('../../controllers/portal.controller');
 const contactPortalController = require('../../controllers/contactPortal.controller');
 
+const { cacheMiddleware } = require('../../middlewares/redisCache');
+
 // Route lấy danh sách HubPortal và Pipeline_Portal
-router.get('/portals-by-contact-date', portalController.getPortalsByContactDate);
+router.get('/portals-by-contact-date', cacheMiddleware(180), portalController.getPortalsByContactDate);
 
 // Cập nhật trạng thái portal (Pending / Enrolled / Done)
 router.patch('/portal-status', portalController.updatePortalStatus);
 
 // Lấy danh sách KH Contact Portal đã mua sản phẩm: thiền, yoga, coach, khoa học luân xa
-router.get('/contacts-by-product-type', contactPortalController.getContactsByProductType);
+router.get('/contacts-by-product-type', cacheMiddleware(300), contactPortalController.getContactsByProductType);
 
 module.exports = router;
