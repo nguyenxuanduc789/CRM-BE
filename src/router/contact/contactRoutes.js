@@ -18,16 +18,17 @@ const {
   searchByProduct,
   exportContactsToExcel,
 } = require('../../controllers/contact.controller');
+const { cacheMiddleware, clearCache } = require('../../middlewares/redisCache');
 
 // ====================== ROUTES ======================
 
 // ── GET ─────────────────────────────────────────────
 router.get('/export-excel',           exportContactsToExcel);
-router.get('/users/active',           getActiveUsers);
-router.get('/contacts',               getContactsrole);
-router.get('/suggest-contacts',       suggestContacts);
-router.get('/contactsstudents',       getContactstudents);
-router.get('/contactsstudentss',      getContactstudentss);
+router.get('/users/active',           cacheMiddleware(300), getActiveUsers);
+router.get('/contacts',               cacheMiddleware(120), getContactsrole);
+router.get('/suggest-contacts',       cacheMiddleware(300), suggestContacts);
+router.get('/contactsstudents',       cacheMiddleware(120), getContactstudents);
+router.get('/contactsstudentss',      cacheMiddleware(120), getContactstudentss);
 router.get('/searchbyproduct', searchByProduct);
 
 router.get('/assignedTo/:userId',     getContactsByAssignedTo);
