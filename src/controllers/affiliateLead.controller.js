@@ -150,6 +150,7 @@ exports.createAbandonedCheckout = async (req, res) => {
       intentCreatedAt,
       task,
       delayHours,
+      source,
     } = req.body;
 
     if (!intentId) {
@@ -169,6 +170,7 @@ exports.createAbandonedCheckout = async (req, res) => {
         intentCreatedAt: intentCreatedAt ? new Date(intentCreatedAt) : new Date(),
         delayHours: delayHours !== undefined ? Number(delayHours) : 1,
         task: task || "call_back",
+        source: source || "",
       },
       { upsert: true, new: true, setDefaultsOnInsert: true }
     );
@@ -196,6 +198,7 @@ exports.createAbandonedCheckout = async (req, res) => {
             <li><b>Số điện thoại:</b> ${phone || 'Chưa cung cấp'}</li>
             <li><b>Email:</b> ${email || 'Chưa cung cấp'}</li>
             <li><b>Khóa học quan tâm:</b> ${productCode || 'Chưa cung cấp'}</li>
+            <li><b>Nguồn:</b> ${source || 'Chưa cung cấp'}</li>
             <li><b>Mã CTV:</b> ${affiliateCode || 'Chưa cung cấp'}</li>
             <li><b>Tên CTV:</b> ${affiliateName || 'Chưa cung cấp'}</li>
             <li><b>Thời điểm tạo intent:</b> ${intentCreatedAt || new Date().toISOString()}</li>

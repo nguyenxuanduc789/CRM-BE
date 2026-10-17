@@ -12,6 +12,7 @@ const affiliateAbandonedCheckoutSchema = new mongoose.Schema(
     intentCreatedAt: { type: Date, default: Date.now },
     delayHours: { type: Number, default: 1 },
     task: { type: String, default: "call_back" },
+    source: { type: String, default: "" }, // e.g. "stripe_checkout_expired", "cron_form_ctv"
     status: { type: String, default: "pending" }, // pending, contacted, converted, cancelled
     adminNotes: { type: String, default: "" },
   },

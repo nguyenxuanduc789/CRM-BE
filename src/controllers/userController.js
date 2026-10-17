@@ -313,6 +313,7 @@ const getUserStatus = async (req, res) => {
       data: {
         _id: user._id,
         status: user.status,
+        affiliateCode: user.affiliateCode || "",
       },
     });
   } catch (error) {

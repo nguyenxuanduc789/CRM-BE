@@ -12,8 +12,12 @@ const userSchema = new Schema(
     code_aff: { 
       type: Number, 
       required: false, 
-      unique: true, 
       sparse: true 
+    },
+    affiliateCode: {
+      type: String,
+      default: "",
+      trim: true
     },
     role: { type: Types.ObjectId, ref: "Role", default: null },
     managedBy: { type: Types.ObjectId, ref: "User", default: null },
