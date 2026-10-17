@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const ExportController = require("../../controllers/export.controller");
 router.get("/export-200h-300h", ExportController.export200h300h);
+router.get("/export-200h", ExportController.exportPipelinePortal200h);
 router.get("/export-special", ExportController.exportSpecial);
 const {
   createPipeline,
