@@ -149,6 +149,7 @@ exports.createAbandonedCheckout = async (req, res) => {
       productCode,
       intentCreatedAt,
       task,
+      delayHours,
     } = req.body;
 
     if (!intentId) {
@@ -166,7 +167,8 @@ exports.createAbandonedCheckout = async (req, res) => {
         affiliateName: affiliateName || "",
         productCode: productCode || "",
         intentCreatedAt: intentCreatedAt ? new Date(intentCreatedAt) : new Date(),
-        task: task || "call_back_24h",
+        delayHours: delayHours !== undefined ? Number(delayHours) : 1,
+        task: task || "call_back",
       },
       { upsert: true, new: true, setDefaultsOnInsert: true }
     );
@@ -177,14 +179,16 @@ exports.createAbandonedCheckout = async (req, res) => {
 
     // Gửi email thông báo cho team Sale
     try {
+      const hours = delayHours !== undefined ? delayHours : 1;
       const mailOptions = {
         from: '"CRM System" <tech@khitamtherapy.com>',
         to: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, nguyenthithanhdiem2806@gmail.com',
-        subject: '[CRM] CẢNH BÁO GIỎ HÀNG BỎ DỞ (24H) - CẦN GỌI LẠI TƯ VẤN',
+        subject: `[CRM] CẢNH BÁO GIỎ HÀNG BỎ DỞ (${hours}H) - CẦN GỌI LẠI TƯ VẤN`,
         html: `
           <h3>Xin chào team Sale,</h3>
-          <p>Khách hàng đã điền thông tin qua link Đắc Sư (checkout intent) nhưng sau 24h vẫn chưa hoàn tất thanh toán.</p>
-          <p>Nhiệm vụ: <b>${task || 'call_back_24h'}</b> (Gọi lại chăm sóc tư vấn).</p>
+          <p>Khách hàng đã điền thông tin qua link Đắc Sư (checkout intent) nhưng sau ${hours} giờ vẫn chưa hoàn tất thanh toán.</p>
+          <p>Nhiệm vụ: <b>${task || 'call_back'}</b> (Gọi lại chăm sóc tư vấn).</p>
+          <p>Thời gian trễ: <b>${hours} giờ</b></p>
           <br>
           <b>Thông tin khách hàng:</b>
           <ul>
