@@ -133,3 +133,93 @@ exports.getOrders = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+const AffiliateAbandonedCheckout = require("../models/affiliateAbandonedCheckout.model");
+
+// Lưu thông tin giỏ hàng bỏ dở 24h từ Đắc Sư
+exports.createAbandonedCheckout = async (req, res) => {
+  try {
+    const {
+      intentId,
+      fullName,
+      email,
+      phone,
+      affiliateCode,
+      affiliateName,
+      productCode,
+      intentCreatedAt,
+      task,
+    } = req.body;
+
+    if (!intentId) {
+      return res.status(400).json({ success: false, message: "intentId is required" });
+    }
+
+    const abandoned = await AffiliateAbandonedCheckout.findOneAndUpdate(
+      { intentId },
+      {
+        intentId,
+        fullName: fullName || "",
+        email: email || "",
+        phone: phone || "",
+        affiliateCode: affiliateCode || "",
+        affiliateName: affiliateName || "",
+        productCode: productCode || "",
+        intentCreatedAt: intentCreatedAt ? new Date(intentCreatedAt) : new Date(),
+        task: task || "call_back_24h",
+      },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
+
+    if (clearCache) {
+      clearCache("affiliate-abandoned-checkouts");
+    }
+
+    // Gửi email thông báo cho team Sale
+    try {
+      const mailOptions = {
+        from: '"CRM System" <tech@khitamtherapy.com>',
+        to: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, nguyenthithanhdiem2806@gmail.com',
+        subject: '[CRM] CẢNH BÁO GIỎ HÀNG BỎ DỞ (24H) - CẦN GỌI LẠI TƯ VẤN',
+        html: `
+          <h3>Xin chào team Sale,</h3>
+          <p>Khách hàng đã điền thông tin qua link Đắc Sư (checkout intent) nhưng sau 24h vẫn chưa hoàn tất thanh toán.</p>
+          <p>Nhiệm vụ: <b>${task || 'call_back_24h'}</b> (Gọi lại chăm sóc tư vấn).</p>
+          <br>
+          <b>Thông tin khách hàng:</b>
+          <ul>
+            <li><b>Họ và tên:</b> ${fullName || 'Chưa cung cấp'}</li>
+            <li><b>Số điện thoại:</b> ${phone || 'Chưa cung cấp'}</li>
+            <li><b>Email:</b> ${email || 'Chưa cung cấp'}</li>
+            <li><b>Khóa học quan tâm:</b> ${productCode || 'Chưa cung cấp'}</li>
+            <li><b>Mã CTV:</b> ${affiliateCode || 'Chưa cung cấp'}</li>
+            <li><b>Tên CTV:</b> ${affiliateName || 'Chưa cung cấp'}</li>
+            <li><b>Thời điểm tạo intent:</b> ${intentCreatedAt || new Date().toISOString()}</li>
+          </ul>
+          <br>
+          <p>Cảm ơn,</p>
+          <p>Hệ thống tự động CRM Khí Tâm</p>
+        `,
+      };
+      await transporter.sendMail(mailOptions);
+    } catch (mailErr) {
+      console.error("[abandoned-checkout] Error sending notification email:", mailErr);
+    }
+
+    res.status(200).json({ success: true, abandoned });
+  } catch (error) {
+    console.error("[abandoned-checkout] Error in createAbandonedCheckout:", error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// Lấy danh sách giỏ hàng bỏ dở
+exports.getAbandonedCheckouts = async (req, res) => {
+  try {
+    const items = await AffiliateAbandonedCheckout.find().sort({ intentCreatedAt: -1, createdAt: -1 }).lean();
+    res.status(200).json({ success: true, items });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+

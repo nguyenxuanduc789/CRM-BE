@@ -7,7 +7,7 @@ const router = express.Router();
 const authenticate = require("../middlewares/authorize");
 
 // Middleware toàn cục
-router.use(express.json());
+router.use(express.json({ verify: (req, res, buf) => { req.rawBody = buf.toString('utf8'); } }));
 router.use(cookieParser());
 router.use(cors({ origin: '*', credentials: true }));
 router.use(requestIp.mw()); // Middleware để lấy IP thực

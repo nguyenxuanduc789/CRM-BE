@@ -22,7 +22,13 @@ const moment = require('moment');
 const corsOptions = {
   origin: "*", // Cho phép tất cả các nguồn
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // Thêm PATCH vào các phương thức HTTP được phép
-  allowedHeaders: ["Content-Type", "Authorization"], // Các header được phép
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "x-dac-su-timestamp",
+    "x-dac-su-idempotency",
+    "x-dac-su-signature",
+  ], // Các header được phép
   credentials: true, // Cho phép gửi cookies hoặc token trong yêu cầu
 };
 const { parse } = require('csv-parse');
@@ -50,7 +56,13 @@ const fileUpload = require('express-fileupload');
 app.use(cors(corsOptions));
 
 // Các middleware
-app.use(express.json());
+app.use(
+  express.json({
+    verify: (req, res, buf) => {
+      req.rawBody = buf.toString("utf8");
+    },
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("short"));
 app.use(helmet({
