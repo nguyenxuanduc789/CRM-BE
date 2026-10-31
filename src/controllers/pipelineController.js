@@ -1453,14 +1453,23 @@ exports.getPipelinesrole = async (req, res) => {
     const userPhone = user.profileDetails?.phone;
     const userFullName = `${user.firstname} ${user.lastname}`;
 
-    // Điều kiện lọc theo ngày
-    const dateFilter = {};
+    // Điều kiện lọc theo ngày (lấy cả đơn tạo mới hoặc có cập nhật trong khoảng thời gian)
+    let dateFilter = {};
     if (startDate && endDate) {
-      dateFilter.createdAt = { $gte: startDate, $lte: endDate };
+      dateFilter = {
+        $or: [
+          { createdAt: { $gte: startDate, $lte: endDate } },
+          { updatedAt: { $gte: startDate, $lte: endDate } },
+        ],
+      };
     } else {
-      dateFilter.createdAt = {
-        $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-        $lte: new Date(),
+      const monthStart = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+      const now = new Date();
+      dateFilter = {
+        $or: [
+          { createdAt: { $gte: monthStart, $lte: now } },
+          { updatedAt: { $gte: monthStart, $lte: now } },
+        ],
       };
     }
 
@@ -1633,9 +1642,15 @@ exports.getPipelinesroles = async (req, res) => {
     const userFullName = `${user.firstname} ${user.lastname}`;
 
     // Điều kiện lọc theo ngày và trạng thái
-    const dateFilter = { status: "Completed" }; // Thêm điều kiện status: Completed
+    let dateFilter = { status: "Completed" }; // Thêm điều kiện status: Completed
     if (startDate && endDate) {
-      dateFilter.createdAt = { $gte: startDate, $lte: endDate };
+      dateFilter = {
+        status: "Completed",
+        $or: [
+          { createdAt: { $gte: startDate, $lte: endDate } },
+          { updatedAt: { $gte: startDate, $lte: endDate } },
+        ],
+      };
     }
 
     let pipelines = [];
@@ -2357,14 +2372,23 @@ exports.getPipelinesroleaca = async (req, res) => {
 
     const role = user.role.name;
 
-    // Điều kiện lọc theo datetime
-    const dateFilter = {};
+    // Điều kiện lọc theo datetime (lấy cả đơn tạo mới hoặc có cập nhật)
+    let dateFilter = {};
     if (startDate && endDate) {
-      dateFilter.createdAt = { $gte: startDate, $lte: endDate };
+      dateFilter = {
+        $or: [
+          { createdAt: { $gte: startDate, $lte: endDate } },
+          { updatedAt: { $gte: startDate, $lte: endDate } },
+        ],
+      };
     } else {
-      dateFilter.createdAt = {
-        $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-        $lte: new Date(),
+      const monthStart = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+      const now = new Date();
+      dateFilter = {
+        $or: [
+          { createdAt: { $gte: monthStart, $lte: now } },
+          { updatedAt: { $gte: monthStart, $lte: now } },
+        ],
       };
     }
 

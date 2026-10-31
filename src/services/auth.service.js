@@ -22,8 +22,13 @@ class AuthService {
     return delKey;
   };
   static login = async ({ email, password }) => {
-    const foundUser = await findByEmail({ email, password });
+    const foundUser = await findByEmail({ email });
+    if (!foundUser) {
+      throw new BadRequestError("Tài khoản hoặc mật khẩu không đúng");
+    }
     const match = await bcrypt.compare(password, foundUser.password);
+    if (!match) throw new AuthFailureError("Authentication error");
+
     const tokens = await createTokenPair(
       foundUser,
       process.env.PUBLIC_KEY,
@@ -34,10 +39,6 @@ class AuthService {
     const firstnames = foundUser.firstname;
     const userId = foundUser._id;
     //console.log("User role:", foundUser.role ? foundUser.role.name : "No role");
-    if (!match) throw new AuthFailureError("Authentication error");
-    if (!foundUser) {
-      throw new BadRequestError("Tài khoản hoặc mật khẩu không đúng");
-    }
 
     return {
       employeeCodes,
