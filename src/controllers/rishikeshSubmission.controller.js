@@ -26,7 +26,7 @@ class RishikeshSubmissionController {
       try {
         const mailOptions = {
           from: '"CRM System" <tech@khitamtherapy.com>',
-          to: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, nguyenthithanhdiem2806@gmail.com',
+          to: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com',
           subject: '[CRM] CÓ FORM RISHIKESH MỚI - YÊU CẦU KIỂM TRA',
           html: `
             <h3>Xin chào team Sale,</h3>

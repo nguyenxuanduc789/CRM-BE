@@ -265,7 +265,7 @@ const sendChotDealEmail = async (pipeline) => {
     const mailOptions = {
       from: '"Khí Tâm CRM" <tech@khitamtherapy.com>',
       to: 'ketoannoibodtp2025@gmail.com',
-      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com',
+      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
       subject: `🎉 Chốt Deal thành công - Đơn hàng #${pipeline.orderCode}`,
       html: `
         <div style="font-family:Arial,sans-serif; max-width:600px; margin:0 auto;
@@ -390,7 +390,7 @@ const sendInstallmentNotificationToAccountant = async (pipeline) => {
     const mailOptions = {
       from: '"Khí Tâm CRM" <tech@khitamtherapy.com>',
       to: 'ketoannoibodtp2025@gmail.com',
-      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com',
+      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
       subject: `[Thông báo] Đơn hàng trả góp mới - #${pipeline.orderCode}`,
       html: `
         <div style="font-family:Arial,sans-serif; max-width:600px; margin:0 auto; padding:20px; border:1px solid #e0e0e0; border-radius:8px;">
@@ -452,7 +452,7 @@ const sendCustomerRegistrationEmail = async (pipeline) => {
     const mailOptions = {
       from: '"Khí Tâm Therapy" <tech@khitamtherapy.com>',
       to: contactEmail,
-      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com',
+      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
       subject: 'Xác nhận đã nhận thông tin đăng ký khóa học',
       html: `
         <div style="font-family:Arial,sans-serif; line-height:1.6; color:#333; max-width:600px;">
@@ -773,7 +773,7 @@ async function sendInstallmentPerPaymentEmail(contactEmail, customerName, produc
     const mailOptions = {
       from: '"Học Viện Khí Tâm Trị Liệu" <tech@khitamtherapy.com>',
       to: contactEmail,
-      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com',
+      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
       subject: `[Xác nhận] Đã nhận thanh toán Đợt ${paidNum} - Đơn hàng #${orderId}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;border:1px solid #e5e7eb;border-radius:10px;color:#1f2937;">
@@ -2027,7 +2027,7 @@ async function sendAcademyCompletionEmail(
   const mailOptions = {
     from: "tech@khitamtherapy.com",
     to: email,
-    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com',
+    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
     subject: `Xác nhận thanh toán thành công - Khóa học ${productNames}`,
     text: `Kính gửi Quý học viên ${customerName},
 
@@ -2048,7 +2048,6 @@ ________________________________________________________________________________
 
 Nếu Quý học viên cần bất kỳ hỗ trợ nào, vui lòng liên hệ qua các kênh sau:
 - Ban Điều hành:
-  Nhà sáng lập: nguyenthithanhdiem2806@gmail.com
   CEO Mrs Thanh Yên: thanhyen.bui@khitamtherapy.com
 - Team hỗ trợ chuyên môn/đào tạo: academy@khitamtherapy.com
   Mr. Trường Xuân: (+84) 975 077 201
@@ -2091,7 +2090,7 @@ async function sendInstallmentThankYouEmail(email, customerName, productNames, f
   const mailOptions = {
     from: '"Học Viện Khí Tâm Trị Liệu" <tech@khitamtherapy.com>',
     to: email,
-    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com',
+    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
     subject: `[Xác nhận] Thanh toán trả góp đợt đầu - Khóa học ${productNames}`,
     html: `
       <div style="font-family:Arial,sans-serif; max-width:600px; margin:0 auto; padding:20px; border:1px solid #e0e0e0; border-radius:8px;">
@@ -2143,7 +2142,7 @@ async function sendHubCompletionEmail(
   const mailOptions = {
     from: "tech@khitamtherapy.com",
     to: email,
-    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, nguyenthithanhdiem2806@gmail.com, khitamtherapytech@gmail.com',
+    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
     subject: `Xác nhận thanh toán thành công - Dịch vụ ${productNames}`,
     text: `Kính gửi Quý khách hàng ${customerName},
 
@@ -2255,7 +2254,7 @@ Khí Tâm Hub Team`,
 // P/S:
 // * Trong 48h tới, bạn sẽ nhận email lịch Mentorship cá nhân hóa + lời mời "Trực chiến" đầu tiên. Hãy kiểm tra hộp thư (và spam) nhé!
 // * Nhằm bảo đảm sự hỗ trợ và đồng hành chuyên nghiệp trong hành trình của Quý Hội viên, đừng ngần ngại liên hệ:
-//    * Ban điều hành: Nhà sáng lập nguyenthithanhdiem2806@gmail.com & Mrs Thanh Yên thanhyen.bui@khitamtherapy.com
+//    * Ban điều hành: Mrs Thanh Yên thanhyen.bui@khitamtherapy.com
 //    * Team hỗ trợ chuyên môn/đào tạo: email academy@khitamtherapy.com - Mr Trường Xuân (+84 975077201) / Mr Vũ Đông (+84 908825893)
 //    * Team hỗ trợ kỹ thuật IT: email tech@khitamtherapy.com - Mr Trung Tín (+84-913306193) / Mr Nguyễn Xuân Đức - IT Dev (+84-70 881 7979)`,
 //   };

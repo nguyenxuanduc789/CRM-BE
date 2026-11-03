@@ -32,7 +32,7 @@ exports.createLead = async (req, res) => {
     try {
       const mailOptions = {
         from: '"CRM System" <tech@khitamtherapy.com>',
-        to: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, nguyenthithanhdiem2806@gmail.com',
+        to: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com',
         subject: '[CRM] CÓ KHÁCH HÀNG MỚI TỪ ĐẮC SƯ (AFFILIATE) - YÊU CẦU KIỂM TRA',
         html: `
           <h3>Xin chào team Sale,</h3>
@@ -184,7 +184,7 @@ exports.createAbandonedCheckout = async (req, res) => {
       const hours = delayHours !== undefined ? delayHours : 1;
       const mailOptions = {
         from: '"CRM System" <tech@khitamtherapy.com>',
-        to: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, nguyenthithanhdiem2806@gmail.com',
+        to: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com',
         subject: `[CRM] CẢNH BÁO GIỎ HÀNG BỎ DỞ (${hours}H) - CẦN GỌI LẠI TƯ VẤN`,
         html: `
           <h3>Xin chào team Sale,</h3>

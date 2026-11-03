@@ -69,7 +69,7 @@ const registerAffiliate = async (req, res) => {
     const affiliateMailOptions = {
       from: 'tech@khitamtherapy.com',
       to: email,
-      cc: ['nguyenthithanhdiem2806@gmail.com', 'khitamtherapytech@gmail.com'],
+      cc: ['khitamtherapytech@gmail.com'],
       subject: 'Chào mừng bạn trở thành Cộng Tác Viên của Khí Tâm Trị Liệu!',
       html: `
         <p>Xin chào ${name},</p>
@@ -98,7 +98,7 @@ const registerAffiliate = async (req, res) => {
     const adminMailOptions = {
       from: 'tech@khitamtherapy.com',
       to: adminEmail,
-      cc: ['nguyenthithanhdiem2806@gmail.com', 'khitamtherapytech@gmail.com'],
+      cc: ['khitamtherapytech@gmail.com'],
       subject: 'Thông báo: Cộng Tác Viên mới đăng ký',
       html: `
         <p>Xin chào Admin,</p>
