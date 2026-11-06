@@ -264,8 +264,8 @@ const sendChotDealEmail = async (pipeline) => {
 
     const mailOptions = {
       from: '"Khí Tâm CRM" <tech@khitamtherapy.com>',
-      to: 'ketoannoibodtp2025@gmail.com',
-      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
+      to: 'consultant.training@khitamtherapy.com',
+      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, khitamtherapytech@gmail.com',
       subject: `🎉 Chốt Deal thành công - Đơn hàng #${pipeline.orderCode}`,
       html: `
         <div style="font-family:Arial,sans-serif; max-width:600px; margin:0 auto;
@@ -389,8 +389,8 @@ const sendInstallmentNotificationToAccountant = async (pipeline) => {
 
     const mailOptions = {
       from: '"Khí Tâm CRM" <tech@khitamtherapy.com>',
-      to: 'ketoannoibodtp2025@gmail.com',
-      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
+      to: 'consultant.training@khitamtherapy.com',
+      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, khitamtherapytech@gmail.com',
       subject: `[Thông báo] Đơn hàng trả góp mới - #${pipeline.orderCode}`,
       html: `
         <div style="font-family:Arial,sans-serif; max-width:600px; margin:0 auto; padding:20px; border:1px solid #e0e0e0; border-radius:8px;">
@@ -452,7 +452,7 @@ const sendCustomerRegistrationEmail = async (pipeline) => {
     const mailOptions = {
       from: '"Khí Tâm Therapy" <tech@khitamtherapy.com>',
       to: contactEmail,
-      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
+      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, khitamtherapytech@gmail.com',
       subject: 'Xác nhận đã nhận thông tin đăng ký khóa học',
       html: `
         <div style="font-family:Arial,sans-serif; line-height:1.6; color:#333; max-width:600px;">
@@ -773,7 +773,7 @@ async function sendInstallmentPerPaymentEmail(contactEmail, customerName, produc
     const mailOptions = {
       from: '"Học Viện Khí Tâm Trị Liệu" <tech@khitamtherapy.com>',
       to: contactEmail,
-      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
+      cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, khitamtherapytech@gmail.com',
       subject: `[Xác nhận] Đã nhận thanh toán Đợt ${paidNum} - Đơn hàng #${orderId}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;border:1px solid #e5e7eb;border-radius:10px;color:#1f2937;">
@@ -2027,7 +2027,7 @@ async function sendAcademyCompletionEmail(
   const mailOptions = {
     from: "tech@khitamtherapy.com",
     to: email,
-    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
+    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, khitamtherapytech@gmail.com',
     subject: `Xác nhận thanh toán thành công - Khóa học ${productNames}`,
     text: `Kính gửi Quý học viên ${customerName},
 
@@ -2090,7 +2090,7 @@ async function sendInstallmentThankYouEmail(email, customerName, productNames, f
   const mailOptions = {
     from: '"Học Viện Khí Tâm Trị Liệu" <tech@khitamtherapy.com>',
     to: email,
-    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
+    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, khitamtherapytech@gmail.com',
     subject: `[Xác nhận] Thanh toán trả góp đợt đầu - Khóa học ${productNames}`,
     html: `
       <div style="font-family:Arial,sans-serif; max-width:600px; margin:0 auto; padding:20px; border:1px solid #e0e0e0; border-radius:8px;">
@@ -2142,7 +2142,7 @@ async function sendHubCompletionEmail(
   const mailOptions = {
     from: "tech@khitamtherapy.com",
     to: email,
-    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, ketoannoibodtp2025@gmail.com, khitamtherapytech@gmail.com',
+    cc: 'cloudyluong1205@gmail.com, ducprokb1234@gmail.com, consultant.training@khitamtherapy.com, khitamtherapytech@gmail.com',
     subject: `Xác nhận thanh toán thành công - Dịch vụ ${productNames}`,
     text: `Kính gửi Quý khách hàng ${customerName},
 
