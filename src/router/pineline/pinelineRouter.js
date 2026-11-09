@@ -6,6 +6,7 @@ const ExportController = require("../../controllers/export.controller");
 router.get("/export-200h-300h", ExportController.export200h300h);
 router.get("/export-200h", ExportController.exportPipelinePortal200h);
 router.get("/export-special", ExportController.exportSpecial);
+router.get("/export-all", ExportController.exportAllAcademyHub);
 const {
   createPipeline,
   getPipelinesrole,

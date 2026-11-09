@@ -223,6 +223,149 @@ class ExportController {
     }
   }
 
+  // Xuất TẤT CẢ học viên mua Academy Pipeline, Hub Portal và CRM Pipeline
+  static async exportAllAcademyHub(req, res) {
+    try {
+      const products = await Product.find({}).lean();
+      const productMap = new Map(products.map(p => [p._id.toString(), p.name]));
+
+      const contactPortals = await Contact_Portal.find({}).lean();
+      const cpMap = new Map();
+      for (const cp of contactPortals) {
+        if (cp.idaca) cpMap.set(String(cp.idaca), cp);
+      }
+
+      const contacts = await Contact.find({}).lean();
+      const contactMap = new Map(contacts.map(c => [c._id.toString(), c]));
+
+      // 1. Academy Pipeline Portal
+      const pipelinePortals = await Pipeline_Portal.find({}).sort({ createdDate: -1 }).lean();
+      const listPipelinePortal = pipelinePortals.map(pp => {
+        const cp = cpMap.get(String(pp.contactId)) || {};
+        const prodName = pp.productId ? (productMap.get(pp.productId.toString()) || '') : '';
+        return {
+          'Nguồn Dữ Liệu': 'Academy Pipeline Portal',
+          'Mã Học Viên (idaca)': pp.contactId || '',
+          'Họ và Tên': cp.namecusaca || '',
+          'Số Điện Thoại': cp.phonecusaca || '',
+          'Email': cp.emailcusaca || '',
+          'Khóa Học / Sản Phẩm': prodName,
+          'Khóa (K)': pp.k || '',
+          'Người Giới Thiệu': cp.NguoiGT || '',
+          'Nguồn Khách': Array.isArray(cp.Typesource) ? cp.Typesource.join(', ') : (cp.Typesource || ''),
+          'Ngày Sinh': cp.dateOfBirth || '',
+          'Giới Tính': cp.gender || '',
+          'Địa Chỉ': cp.address || '',
+          'Ngày Tạo': pp.createdDate ? new Date(pp.createdDate).toLocaleDateString('vi-VN') : '',
+          'Thời Gian Đầy Đủ': pp.createdDate ? new Date(pp.createdDate).toLocaleString('vi-VN') : ''
+        };
+      });
+
+      // 2. Hub Portal
+      const hubPortals = await HubPortal.find({}).sort({ createdDate: -1 }).lean();
+      const listHubPortal = hubPortals.map(hp => {
+        const cp = cpMap.get(String(hp.contactId)) || {};
+        const prodName = hp.productId ? (productMap.get(hp.productId.toString()) || '') : '';
+        return {
+          'Nguồn Dữ Liệu': 'Hub Portal',
+          'Mã Học Viên (idaca)': hp.contactId || '',
+          'Họ và Tên': cp.namecusaca || '',
+          'Số Điện Thoại': cp.phonecusaca || '',
+          'Email': cp.emailcusaca || '',
+          'Khóa Học / Sản Phẩm': prodName,
+          'Số Lượng': hp.quantity || 1,
+          'Trạng Thái': hp.status || '',
+          'Ngày Thanh Toán': hp.paymentDate || '',
+          'Người Giới Thiệu': cp.NguoiGT || '',
+          'Nguồn Khách': Array.isArray(cp.Typesource) ? cp.Typesource.join(', ') : (cp.Typesource || ''),
+          'Ngày Sinh': cp.dateOfBirth || '',
+          'Giới Tính': cp.gender || '',
+          'Địa Chỉ': cp.address || '',
+          'Ngày Tạo': hp.createdDate ? new Date(hp.createdDate).toLocaleDateString('vi-VN') : '',
+          'Thời Gian Đầy Đủ': hp.createdDate ? new Date(hp.createdDate).toLocaleString('vi-VN') : ''
+        };
+      });
+
+      // 3. CRM Pipeline
+      const crmPipelines = await Pipeline.find({}).sort({ createdAt: -1 }).lean();
+      const listCrmPipeline = crmPipelines.map(pl => {
+        const c = pl.contact ? contactMap.get(pl.contact.toString()) : (pl.user ? contactMap.get(pl.user.toString()) : null);
+        let prods = '';
+        if (Array.isArray(pl.products)) {
+          prods = pl.products.map(pid => productMap.get(pid.toString()) || '').filter(Boolean).join(', ');
+        }
+        return {
+          'Nguồn Dữ Liệu': 'CRM Pipeline',
+          'Họ và Tên': c?.name || c?.fullName || '',
+          'Số Điện Thoại': c?.phone || '',
+          'Email': c?.email || '',
+          'Giai Đoạn (Stage)': pl.stage || '',
+          'Khóa Học / Sản Phẩm': prods,
+          'Tổng Tiền': pl.amountTotal || 0,
+          'Thanh Toán Đợt 1': pl.Firstpayment || 0,
+          'Đặt Cọc': pl.depositAmount || 0,
+          'Loại Thanh Toán': pl.PaymentType || '',
+          'Ngày Tạo': pl.createdAt ? new Date(pl.createdAt).toLocaleDateString('vi-VN') : '',
+          'Thời Gian Đầy Đủ': pl.createdAt ? new Date(pl.createdAt).toLocaleString('vi-VN') : ''
+        };
+      });
+
+      // 4. Unified summary
+      const allList = [
+        ...listPipelinePortal.map(i => ({
+          'Hệ Thống': i['Nguồn Dữ Liệu'],
+          'Mã Học Viên': i['Mã Học Viên (idaca)'],
+          'Họ và Tên': i['Họ và Tên'],
+          'Số Điện Thoại': i['Số Điện Thoại'],
+          'Email': i['Email'],
+          'Khóa Học / Sản Phẩm': i['Khóa Học / Sản Phẩm'],
+          'Thông Tin Bổ Sung': `Khóa: ${i['Khóa (K)'] || ''}`,
+          'Người Giới Thiệu': i['Người Giới Thiệu'],
+          'Địa Chỉ': i['Địa Chỉ'],
+          'Ngày Ghi Nhận': i['Ngày Tạo']
+        })),
+        ...listHubPortal.map(i => ({
+          'Hệ Thống': i['Nguồn Dữ Liệu'],
+          'Mã Học Viên': i['Mã Học Viên (idaca)'],
+          'Họ và Tên': i['Họ và Tên'],
+          'Số Điện Thoại': i['Số Điện Thoại'],
+          'Email': i['Email'],
+          'Khóa Học / Sản Phẩm': i['Khóa Học / Sản Phẩm'],
+          'Thông Tin Bổ Sung': `SL: ${i['Số Lượng']} | TT: ${i['Trạng Thái'] || ''} | Ngày TT: ${i['Ngày Thanh Toán'] || ''}`,
+          'Người Giới Thiệu': i['Người Giới Thiệu'],
+          'Địa Chỉ': i['Địa Chỉ'],
+          'Ngày Ghi Nhận': i['Ngày Tạo']
+        })),
+        ...listCrmPipeline.map(i => ({
+          'Hệ Thống': i['Nguồn Dữ Liệu'],
+          'Mã Học Viên': '',
+          'Họ và Tên': i['Họ và Tên'],
+          'Số Điện Thoại': i['Số Điện Thoại'],
+          'Email': i['Email'],
+          'Khóa Học / Sản Phẩm': i['Khóa Học / Sản Phẩm'],
+          'Thông Tin Bổ Sung': `Stage: ${i['Giai Đoạn (Stage)']} | Tiền: ${i['Tổng Tiền']}`,
+          'Người Giới Thiệu': '',
+          'Địa Chỉ': '',
+          'Ngày Ghi Nhận': i['Ngày Tạo']
+        }))
+      ];
+
+      const wb = xlsx.utils.book_new();
+      xlsx.utils.book_append_sheet(wb, xlsx.utils.json_to_sheet(allList), 'Tat_Ca_Tong_Hop');
+      xlsx.utils.book_append_sheet(wb, xlsx.utils.json_to_sheet(listPipelinePortal), 'Academy_Pipeline_Portal');
+      xlsx.utils.book_append_sheet(wb, xlsx.utils.json_to_sheet(listHubPortal), 'Hub_Portal');
+      xlsx.utils.book_append_sheet(wb, xlsx.utils.json_to_sheet(listCrmPipeline), 'CRM_Pipeline');
+
+      const buffer = xlsx.write(wb, { type: 'buffer', bookType: 'xlsx' });
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.setHeader('Content-Disposition', 'attachment; filename="Danh_Sach_Hoc_Vien_Mua_Academy_Pipeline_va_Hub_Portal_TAT_CA.xlsx"');
+      return res.send(buffer);
+    } catch (error) {
+      console.error("[exportAllAcademyHub] Error:", error);
+      return res.status(500).json({ message: "Lỗi xuất file Excel tất cả học viên", error: error.message });
+    }
+  }
+
 }
 
 module.exports = ExportController;

@@ -20,4 +20,7 @@ router.get('/contacts-by-product-type', cacheMiddleware(300), contactPortalContr
 // Xuất file Excel học viên 200H trong Tab Pipeline Portal
 router.get('/export-200h', ExportController.exportPipelinePortal200h);
 
+// Xuất file Excel TẤT CẢ học viên mua Academy Pipeline & Hub Portal
+router.get('/export-all', ExportController.exportAllAcademyHub);
+
 module.exports = router;
